@@ -15,8 +15,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Agency - Digital Solutions That Drive Results",
-  description: "Transform your business with our cutting-edge design and development solutions. We help brands tell their story through exceptional digital experiences.",
+  title: "SocialVRTX - Digital Marketing That Drives Results",
+  description: "Transform your business with SocialVRTX's cutting-edge marketing solutions. We help brands grow through data-driven strategies and exceptional digital experiences.",
 };
 
 export default function RootLayout({

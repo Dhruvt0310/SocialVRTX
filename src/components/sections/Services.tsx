@@ -1,79 +1,112 @@
-"use client"
+"use client";
 
-import { motion } from "framer-motion"
-import { Code, Palette, Smartphone, Search, Globe, Zap } from "lucide-react"
+import { BentoGrid, BentoGridItem } from "@/components/ui/bento-grid";
+import { HoverEffect } from "@/components/ui/card-hover-effect";
+import { SparklesCore } from "@/components/ui/sparkles";
 
 const services = [
-    {
-        icon: <Code className="w-8 h-8" />,
-        title: "Web Development",
-        description: "Custom websites and web applications built with modern technologies"
-    },
-    {
-        icon: <Palette className="w-8 h-8" />,
-        title: "UI/UX Design",
-        description: "Beautiful, intuitive designs that enhance user experience"
-    },
-    {
-        icon: <Smartphone className="w-8 h-8" />,
-        title: "Mobile Apps",
-        description: "Native and cross-platform mobile applications"
-    },
-    {
-        icon: <Search className="w-8 h-8" />,
-        title: "SEO Optimization",
-        description: "Improve your search rankings and online visibility"
-    },
-    {
-        icon: <Globe className="w-8 h-8" />,
-        title: "Digital Marketing",
-        description: "Comprehensive digital marketing strategies that convert"
-    },
-    {
-        icon: <Zap className="w-8 h-8" />,
-        title: "Brand Strategy",
-        description: "Build a strong brand identity that resonates with your audience"
-    }
-]
+  {
+    title: "Social Media Marketing",
+    description: "Strategic social media campaigns that build brand awareness, engage audiences, and drive conversions across all platforms.",
+    link: "#"
+  },
+  {
+    title: "Performance Marketing",
+    description: "Data-driven paid advertising campaigns across Google, Facebook, Instagram, and other platforms to maximize ROI.",
+    link: "#"
+  },
+  {
+    title: "Content Marketing",
+    description: "Compelling content strategies that tell your brand story and engage your target audience at every touchpoint.",
+    link: "#"
+  },
+  {
+    title: "Influencer Marketing",
+    description: "Strategic partnerships with influencers and content creators to amplify your brand reach and credibility.",
+    link: "#"
+  },
+  {
+    title: "Marketing Automation",
+    description: "Advanced automation systems that nurture leads, personalize customer journeys, and scale your marketing efforts.",
+    link: "#"
+  },
+  {
+    title: "Analytics & Insights",
+    description: "Comprehensive tracking and analysis to measure campaign performance and optimize your marketing strategies.",
+    link: "#"
+  }
+];
+
+const bentoItems = [
+  {
+    title: "Strategy First",
+    description: "Every project starts with a comprehensive strategy to ensure we're solving the right problems.",
+    header: <div className="flex flex-1 w-full h-full min-h-[6rem] rounded-xl bg-gradient-to-br from-neutral-200 dark:from-neutral-900 dark:to-neutral-800 to-neutral-100"></div>,
+  },
+  {
+    title: "Creative Excellence",
+    description: "Award-winning creative solutions that stand out in today's competitive landscape.",
+    header: <div className="flex flex-1 w-full h-full min-h-[6rem] rounded-xl bg-gradient-to-br from-neutral-200 dark:from-neutral-900 dark:to-neutral-800 to-neutral-100"></div>,
+  },
+  {
+    title: "Technical Expertise",
+    description: "Cutting-edge technology implementation with a focus on performance and scalability.",
+    header: <div className="flex flex-1 w-full h-full min-h-[6rem] rounded-xl bg-gradient-to-br from-neutral-200 dark:from-neutral-900 dark:to-neutral-800 to-neutral-100"></div>,
+  },
+  {
+    title: "Results Driven",
+    description: "We measure success through your business growth and customer satisfaction.",
+    header: <div className="flex flex-1 w-full h-full min-h-[6rem] rounded-xl bg-gradient-to-br from-neutral-200 dark:from-neutral-900 dark:to-neutral-800 to-neutral-100"></div>,
+  },
+];
 
 export default function Services() {
-    return (
-        <section className="py-20 bg-white">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8 }}
-                    viewport={{ once: true }}
-                    className="text-center mb-16"
-                >
-                    <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-                        What We're Good At
-                    </h2>
-                    <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                        We specialize in creating digital solutions that help businesses grow and succeed in the modern world.
-                    </p>
-                </motion.div>
+  return (
+    <div className="py-20 bg-black/[0.96] antialiased bg-grid-white/[0.02] relative">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Section Header */}
+        <div className="text-center mb-16">
+          <h2 className="text-4xl md:text-6xl font-bold text-center bg-clip-text text-transparent bg-gradient-to-b from-neutral-50 to-neutral-400 mb-4">
+            What We're Good At
+          </h2>
+          <p className="text-xl text-neutral-300 max-w-3xl mx-auto">
+            SocialVRTX combines data-driven strategies, creative content, and cutting-edge technology to deliver exceptional marketing results.
+          </p>
+        </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    {services.map((service, index) => (
-                        <motion.div
-                            key={index}
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.8, delay: index * 0.1 }}
-                            viewport={{ once: true }}
-                            className="bg-gray-50 p-8 rounded-lg hover:shadow-lg transition-shadow"
-                        >
-                            <div className="text-blue-600 mb-4">{service.icon}</div>
-                            <h3 className="text-xl font-semibold text-gray-900 mb-3">
-                                {service.title}
-                            </h3>
-                            <p className="text-gray-600">{service.description}</p>
-                        </motion.div>
-                    ))}
-                </div>
-            </div>
-        </section>
-    )
+        {/* Services Grid */}
+        <div className="mb-20">
+          <HoverEffect items={services} />
+        </div>
+
+        {/* Why Choose Us - Bento Grid */}
+        <div className="mb-16">
+          <h3 className="text-3xl md:text-4xl font-bold text-center bg-clip-text text-transparent bg-gradient-to-b from-neutral-50 to-neutral-400 mb-12">
+            Why Choose Us
+          </h3>
+          <BentoGrid className="max-w-4xl mx-auto">
+            {bentoItems.map((item, i) => (
+              <BentoGridItem
+                key={i}
+                title={item.title}
+                description={item.description}
+                header={item.header}
+                className={i === 3 || i === 6 ? "md:col-span-2" : ""}
+              />
+            ))}
+          </BentoGrid>
+        </div>
+      </div>
+      
+      <SparklesCore
+        id="services-sparkles"
+        background="transparent"
+        minSize={0.4}
+        maxSize={1}
+        particleDensity={100}
+        className="w-full h-full absolute inset-0"
+        particleColor="#FFFFFF"
+      />
+    </div>
+  );
 }

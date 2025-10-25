@@ -2,30 +2,34 @@
 
 import { motion } from "framer-motion"
 import { Users, Target, Eye, Heart, Award, Calendar } from "lucide-react"
+import { Timeline } from "@/components/ui/timeline"
+import { HoverEffect } from "@/components/ui/card-hover-effect"
+import { Spotlight } from "@/components/ui/spotlight"
+import { TextGenerateEffect } from "@/components/ui/text-generate-effect"
 
 const team = [
     {
         name: "John Smith",
         role: "CEO & Founder",
-        image: "/api/placeholder/300/300",
+        image: "/img.png",
         bio: "10+ years of experience in digital strategy and business development."
     },
     {
         name: "Sarah Johnson",
         role: "Creative Director",
-        image: "/api/placeholder/300/300",
+        image: "/img.png",
         bio: "Award-winning designer with expertise in brand identity and UX design."
     },
     {
         name: "Mike Chen",
         role: "Lead Developer",
-        image: "/api/placeholder/300/300",
+        image: "/img.png",
         bio: "Full-stack developer specializing in modern web technologies."
     },
     {
         name: "Emily Davis",
         role: "Marketing Manager",
-        image: "/api/placeholder/300/300",
+        image: "/img.png",
         bio: "Digital marketing expert with a focus on growth and conversion optimization."
     }
 ]
@@ -74,11 +78,11 @@ export default function About() {
                         transition={{ duration: 0.8 }}
                     >
                         <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
-                            About Our Agency
+                            About SocialVRTX
                         </h1>
                         <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                            We're a team of passionate creators, strategists, and innovators dedicated to
-                            helping businesses thrive in the digital world.
+                            SocialVRTX is a team of passionate marketers, strategists, and innovators dedicated to
+                            helping businesses thrive through data-driven digital marketing solutions.
                         </p>
                     </motion.div>
                 </div>
@@ -98,14 +102,14 @@ export default function About() {
                                 Our Story
                             </h2>
                             <p className="text-gray-600 mb-6">
-                                Founded in 2019, our agency began with a simple mission: to bridge the gap between
-                                innovative technology and meaningful human experiences. What started as a small team
-                                of designers and developers has grown into a full-service digital agency.
+                                Founded in 2019, SocialVRTX began with a simple mission: to bridge the gap between
+                                innovative marketing technology and meaningful customer connections. What started as a small team
+                                of marketers and strategists has grown into a full-service digital marketing agency.
                             </p>
                             <p className="text-gray-600 mb-6">
                                 Today, we work with clients ranging from startups to Fortune 500 companies,
-                                helping them navigate the digital landscape and achieve their business goals
-                                through strategic design and development.
+                                helping them navigate the digital marketing landscape and achieve their business goals
+                                through data-driven strategies and creative campaigns.
                             </p>
                         </motion.div>
                         <motion.div

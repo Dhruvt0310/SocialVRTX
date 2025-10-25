@@ -1,62 +1,167 @@
-import Link from "next/link"
-import { Facebook, Twitter, Instagram, Linkedin, Mail, Phone, MapPin } from "lucide-react"
+"use client";
+
+import Link from "next/link";
+import { Mail, Phone, MapPin, Twitter, Linkedin, Instagram, Facebook } from "lucide-react";
 
 export default function Footer() {
-    return (
-        <footer className="bg-gray-900 text-white">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-                <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-                    {/* Company Info */}
-                    <div className="col-span-1 md:col-span-2">
-                        <h3 className="text-2xl font-bold mb-4">Agency</h3>
-                        <p className="text-gray-300 mb-4 max-w-md">
-                            We create exceptional digital experiences that drive results for your business.
-                        </p>
-                        <div className="flex space-x-4">
-                            <Facebook className="w-5 h-5 text-gray-400 hover:text-white cursor-pointer" />
-                            <Twitter className="w-5 h-5 text-gray-400 hover:text-white cursor-pointer" />
-                            <Instagram className="w-5 h-5 text-gray-400 hover:text-white cursor-pointer" />
-                            <Linkedin className="w-5 h-5 text-gray-400 hover:text-white cursor-pointer" />
-                        </div>
-                    </div>
+  const navigation = {
+    company: [
+      { name: "About", href: "/about" },
+      { name: "Work", href: "/work" },
+      { name: "Contact", href: "/contact" },
+      { name: "Careers", href: "#" },
+    ],
+    services: [
+      { name: "Brand Strategy", href: "#" },
+      { name: "Web Development", href: "#" },
+      { name: "Digital Marketing", href: "#" },
+      { name: "UI/UX Design", href: "#" },
+    ],
+    resources: [
+      { name: "Blog", href: "#" },
+      { name: "Case Studies", href: "#" },
+      { name: "Portfolio", href: "#" },
+      { name: "Insights", href: "#" },
+    ],
+    legal: [
+      { name: "Privacy Policy", href: "#" },
+      { name: "Terms of Service", href: "#" },
+      { name: "Cookie Policy", href: "#" },
+    ],
+  };
 
-                    {/* Quick Links */}
-                    <div>
-                        <h4 className="text-lg font-semibold mb-4">Quick Links</h4>
-                        <ul className="space-y-2">
-                            <li><Link href="/about" className="text-gray-300 hover:text-white">About Us</Link></li>
-                            <li><Link href="/work" className="text-gray-300 hover:text-white">Our Work</Link></li>
-                            <li><Link href="/contact" className="text-gray-300 hover:text-white">Contact</Link></li>
-                            <li><Link href="/careers" className="text-gray-300 hover:text-white">Careers</Link></li>
-                        </ul>
-                    </div>
+  const socialLinks = [
+    { name: "Twitter", icon: Twitter, href: "#" },
+    { name: "LinkedIn", icon: Linkedin, href: "#" },
+    { name: "Instagram", icon: Instagram, href: "#" },
+    { name: "Facebook", icon: Facebook, href: "#" },
+  ];
 
-                    {/* Contact Info */}
-                    <div>
-                        <h4 className="text-lg font-semibold mb-4">Contact</h4>
-                        <div className="space-y-2">
-                            <div className="flex items-center">
-                                <Mail className="w-4 h-4 mr-2" />
-                                <span className="text-gray-300">hello@agency.com</span>
-                            </div>
-                            <div className="flex items-center">
-                                <Phone className="w-4 h-4 mr-2" />
-                                <span className="text-gray-300">+1 (555) 123-4567</span>
-                            </div>
-                            <div className="flex items-center">
-                                <MapPin className="w-4 h-4 mr-2" />
-                                <span className="text-gray-300">New York, NY</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div className="border-t border-gray-800 mt-8 pt-8 text-center">
-                    <p className="text-gray-400">
-                        © 2024 Agency. All rights reserved.
-                    </p>
-                </div>
+  return (
+    <footer className="bg-black text-white">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-8">
+          {/* Company Info */}
+          <div className="lg:col-span-2">
+            <Link href="/" className="flex items-center space-x-2 mb-4">
+              <div className="w-8 h-8 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-lg flex items-center justify-center">
+                <span className="text-white font-bold text-lg">S</span>
+              </div>
+              <span className="text-white font-bold text-xl">SocialVRTX</span>
+            </Link>
+            <p className="text-neutral-400 mb-6 max-w-md">
+              SocialVRTX creates data-driven marketing strategies that help businesses grow and connect with their audiences through innovative digital solutions.
+            </p>
+            <div className="space-y-2">
+              <div className="flex items-center space-x-2 text-neutral-400">
+                <Mail size={16} />
+                <span>hello@socialvrtx.com</span>
+              </div>
+              <div className="flex items-center space-x-2 text-neutral-400">
+                <Phone size={16} />
+                <span>+1 (555) 123-4567</span>
+              </div>
+              <div className="flex items-center space-x-2 text-neutral-400">
+                <MapPin size={16} />
+                <span>123 Creative Street, Design City</span>
+              </div>
             </div>
-        </footer>
-    )
+          </div>
+
+          {/* Company Links */}
+          <div>
+            <h3 className="text-white font-semibold mb-4">Company</h3>
+            <ul className="space-y-2">
+              {navigation.company.map((item) => (
+                <li key={item.name}>
+                  <Link
+                    href={item.href}
+                    className="text-neutral-400 hover:text-white transition-colors duration-200"
+                  >
+                    {item.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Services Links */}
+          <div>
+            <h3 className="text-white font-semibold mb-4">Services</h3>
+            <ul className="space-y-2">
+              {navigation.services.map((item) => (
+                <li key={item.name}>
+                  <Link
+                    href={item.href}
+                    className="text-neutral-400 hover:text-white transition-colors duration-200"
+                  >
+                    {item.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Resources Links */}
+          <div>
+            <h3 className="text-white font-semibold mb-4">Resources</h3>
+            <ul className="space-y-2">
+              {navigation.resources.map((item) => (
+                <li key={item.name}>
+                  <Link
+                    href={item.href}
+                    className="text-neutral-400 hover:text-white transition-colors duration-200"
+                  >
+                    {item.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Legal Links */}
+          <div>
+            <h3 className="text-white font-semibold mb-4">Legal</h3>
+            <ul className="space-y-2">
+              {navigation.legal.map((item) => (
+                <li key={item.name}>
+                  <Link
+                    href={item.href}
+                    className="text-neutral-400 hover:text-white transition-colors duration-200"
+                  >
+                    {item.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+
+        {/* Bottom Section */}
+        <div className="border-t border-neutral-800 mt-12 pt-8">
+          <div className="flex flex-col md:flex-row justify-between items-center">
+            <p className="text-neutral-400 text-sm">
+              © 2024 SocialVRTX. All rights reserved.
+            </p>
+            
+            {/* Social Links */}
+            <div className="flex space-x-4 mt-4 md:mt-0">
+              {socialLinks.map((item) => {
+                const Icon = item.icon;
+                return (
+                  <Link
+                    key={item.name}
+                    href={item.href}
+                    className="text-neutral-400 hover:text-white transition-colors duration-200"
+                  >
+                    <Icon size={20} />
+                  </Link>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+  );
 }
