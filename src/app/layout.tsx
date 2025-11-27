@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import Loader from "@/components/layout/Loader";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -15,8 +16,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "SocialVRTX - Digital Marketing That Drives Results",
-  description: "Transform your business with SocialVRTX's cutting-edge marketing solutions. We help brands grow through data-driven strategies and exceptional digital experiences.",
+  title: "Social Vortex - Digital Marketing That Drives Results",
+  description: "Transform your business with Social Vortex's cutting-edge marketing solutions. We help brands grow through data-driven strategies and exceptional digital experiences.",
 };
 
 export default function RootLayout({
@@ -29,9 +30,9 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <Loader />
         <Header />
         {children}
-        <Footer />
       </body>
     </html>
   );

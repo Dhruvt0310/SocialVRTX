@@ -1,10 +1,15 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, useMotionValue, animate } from "framer-motion";
 
-export default function Bulb() {
+export default function Bulb({
+  originX = "50%",
+  originY = "50%",
+  autoPullDelay = 2500, // prop for auto pull timing
+}) {
   const [isOn, setIsOn] = useState(false);
+  const [irisActive, setIrisActive] = useState(false);
   const y = useMotionValue(0);
 
   const handleDragEnd = (_, info) => {
@@ -14,28 +19,88 @@ export default function Bulb() {
     animate(y, 0, { type: "spring", stiffness: 250, damping: 20 });
   };
 
+  // Iris effect trigger when bulb toggles
+  useEffect(() => {
+    if (isOn) {
+      setIrisActive(true);
+      const timer = setTimeout(() => setIrisActive(false), 1500);
+      return () => clearTimeout(timer);
+    }
+  }, [isOn]);
+
+  // === AUTO PULL FEATURE ===
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      // simulate pull down
+      animate(y, 100, {
+        duration: 0.8,
+        ease: [0.3, 0, 0.2, 1],
+        onComplete: () => {
+          // trigger light on when pull completes
+          setIsOn((prev) => !prev);
+          // bounce back up with realistic momentum
+          animate(y, [100, -20, 10, 0], {
+            duration: 0.6,
+            ease: "easeOut",
+          });
+        },
+      });
+    }, autoPullDelay);
+
+    return () => clearTimeout(timer);
+  }, [autoPullDelay]);
+
   return (
     <motion.div
-      className={`relative min-h-screen flex items-center justify-center transition-colors duration-700 ${
-        isOn ? "bg-amber-100" : "bg-slate-900"
-      }`}
+      className="relative min-h-screen flex items-center justify-center overflow-hidden transition-colors duration-700"
+      style={{
+        backgroundColor: isOn ? "#ffee42" : "#000c17", // darker, richer warm yellow
+        position: "relative",
+      }}
     >
+      {/* ===== IRIS LIGHT EXPANSION EFFECT ===== */}
+      <motion.div
+        key={isOn ? "on" : "off"}
+        initial={{
+          width: 0,
+          height: 0,
+          opacity: 0.8,
+          borderRadius: "50%",
+          position: "absolute",
+          left: originX,
+          top: originY,
+          x: "-50%",
+          y: "-50%",
+          background:
+            "radial-gradient(circle, rgba(255,249,196,0.8) 0%, rgba(254,240,138,0.6) 20%, rgba(250,204,21,0.2) 60%, rgba(0,0,0,0) 100%)",
+          zIndex: 0,
+        }}
+        animate={
+          irisActive
+            ? {
+                width: ["0vw", "300vw"],
+                height: ["0vw", "300vw"],
+                opacity: [0.8, 0.7, 0],
+                transition: { duration: 1.5, ease: "easeOut" },
+              }
+            : {}
+        }
+      />
+
+      {/* ===== MAIN BULB CONTENT ===== */}
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 300 600"
-        className="h-[70vmin] overflow-visible"
+        className="h-[70vmin] overflow-visible relative z-10"
         preserveAspectRatio="xMidYMin meet"
       >
-        {/* ================== DEFINITIONS ================== */}
         <defs>
-          {/* Bulb glass gradient */}
           <radialGradient id="bulbGradient" cx="0.3" cy="0.3" r="0.8">
             <stop offset="0%" stopColor={isOn ? "#fff9c4" : "#4a4a4a"} />
             <stop offset="50%" stopColor={isOn ? "#fef08a" : "#3a3a3a"} />
             <stop offset="100%" stopColor={isOn ? "#eab308" : "#2a2a2a"} />
           </radialGradient>
 
-          {/* Metal base gradient */}
           <linearGradient id="capGradient" x1="0%" y1="0%" x2="100%" y2="100%">
             <stop offset="0%" stopColor="#f8fafc" />
             <stop offset="20%" stopColor="#e2e8f0" />
@@ -44,7 +109,6 @@ export default function Bulb() {
             <stop offset="100%" stopColor="#475569" />
           </linearGradient>
 
-          {/* Reflection gradient */}
           <linearGradient id="reflectionGradient" x1="0%" y1="0%" x2="100%" y2="0%">
             <stop offset="0%" stopColor="rgba(255,255,255,0.7)" />
             <stop offset="25%" stopColor="rgba(255,255,255,0.25)" />
@@ -52,7 +116,6 @@ export default function Bulb() {
             <stop offset="100%" stopColor="transparent" />
           </linearGradient>
 
-          {/* Glow filter */}
           <filter id="glowFilter" x="-50%" y="-50%" width="200%" height="200%">
             <feGaussianBlur stdDeviation="8" result="blur" />
             <feMerge>
@@ -62,13 +125,13 @@ export default function Bulb() {
           </filter>
         </defs>
 
-        {/* ================== CORD SECTION ================== */}
+        {/* Cord */}
         <motion.line
-          x1="600"
-          x2="600"
+          x1="800"
+          x2="800"
           y1="-300"
           y2="300"
-          stroke={isOn ? "#cbd5e1" : "#475569"}
+          stroke={isOn ? "#19461dff" : "#475569"}
           strokeWidth="6"
           strokeLinecap="round"
           style={{ y }}
@@ -76,22 +139,25 @@ export default function Bulb() {
 
         {/* Cord knob */}
         <motion.circle
-          cx="600"
+          cx="800"
           cy="300"
           r="20"
-          className={`cursor-grab active:cursor-grabbing ${
-            isOn ? "fill-gray-300" : "fill-gray-600"
+          className={`${
+            isOn ? "fill-[#19461dff]" : "fill-gray-600"
           }`}
           style={{ y }}
+          // ===== Manual drag temporarily disabled =====
+          /*
           drag="y"
           dragConstraints={{ top: 0, bottom: 120 }}
           dragElastic={0.3}
           onDragEnd={handleDragEnd}
+          className="cursor-grab active:cursor-grabbing"
+          */
         />
 
-        {/* ================== BULB SECTION ================== */}
-        <g transform="translate(-200,100)">
-          {/* Improved pear-shaped glass bulb */}
+        {/* Bulb */}
+        <g transform="translate(-200,60)">
           <motion.path
             d="M 60 60 
                C 95 60, 115 90, 115 120
@@ -108,7 +174,6 @@ export default function Bulb() {
             transition={{ duration: 0.4 }}
           />
 
-          {/* Reflection highlight for glass realism */}
           <path
             d="M 45 75 
                C 55 70, 65 80, 70 110 
@@ -120,7 +185,6 @@ export default function Bulb() {
             strokeLinecap="round"
           />
 
-          {/* Filament supports */}
           <line x1="60" y1="240" x2="60" y2="155" stroke="#666" strokeWidth="1.5" />
           <line x1="60" y1="155" x2="55" y2="145" stroke="#666" strokeWidth="1" />
           <line x1="60" y1="155" x2="65" y2="145" stroke="#666" strokeWidth="1" />
@@ -147,7 +211,7 @@ export default function Bulb() {
             />
           </motion.g>
 
-          {/* Glow flicker when on */}
+          {/* Glow flicker */}
           {isOn && (
             <motion.g
               initial={{ opacity: 0 }}
@@ -173,9 +237,8 @@ export default function Bulb() {
             </motion.g>
           )}
 
-          {/* Improved metal screw cap */}
+          {/* Metal screw cap */}
           <g transform="translate(-5, 220)">
-            {/* Base shape */}
             <path
               d="M 50 0 
                  L 80 0 
@@ -190,8 +253,6 @@ export default function Bulb() {
               stroke="#4b5563"
               strokeWidth="1"
             />
-
-            {/* Screw ridges */}
             {[2, 5, 8, 11, 14, 17, 20, 23].map((offset) => (
               <path
                 key={offset}
@@ -201,8 +262,6 @@ export default function Bulb() {
                 fill="none"
               />
             ))}
-
-            {/* Rim highlight */}
             <path
               d="M 50 0 L 80 0 Q 85 0 85 3"
               stroke="#f9fafb"
@@ -211,14 +270,14 @@ export default function Bulb() {
             />
           </g>
 
-          {/* Glow aura */}
+          {/* Glow aura
           {isOn && (
             <motion.ellipse
               cx="60"
               cy="140"
               rx="65"
               ry="90"
-              stroke="hsl(50, 100%, 85%)"
+              stroke="hsla(96, 100%, 44%, 1.00)"
               strokeWidth="6"
               strokeDasharray="15 15"
               fill="none"
@@ -237,7 +296,6 @@ export default function Bulb() {
             />
           )}
 
-          {/* Inner glow core */}
           {isOn && (
             <motion.ellipse
               cx="60"
@@ -253,7 +311,7 @@ export default function Bulb() {
                 ease: "easeInOut",
               }}
             />
-          )}
+          )} */}
         </g>
       </svg>
     </motion.div>
