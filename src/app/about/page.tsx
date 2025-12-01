@@ -1,12 +1,8 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { Users, Target, Eye, Heart, Award, Calendar } from "lucide-react"
-import { Timeline } from "@/components/ui/timeline"
-import { HoverEffect } from "@/components/ui/card-hover-effect"
-import { Spotlight } from "@/components/ui/spotlight"
-import { TextGenerateEffect } from "@/components/ui/text-generate-effect"
-
+import { Users, Target, Eye, Heart, Award } from "lucide-react"
+import Bulb from "@/components/sections/Bulb"
 const team = [
     {
         name: "John Smith",
@@ -141,6 +137,11 @@ export default function About() {
                     </div>
                 </div>
             </section>
+
+            {/* Interactive Bulb Section */}
+            <section className="py-0">
+                <Bulb />
+            </section>y
 
             {/* Mission & Vision */}
             <section className="py-20 bg-gray-50">
