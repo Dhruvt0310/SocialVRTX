@@ -4,6 +4,7 @@ import WorkProcess from "@/components/sections/WorkProcess"
 import ClientLogos from "@/components/sections/ClientLogos"
 import Testimonials from "@/components/sections/Testimonials"
 import CTA from "@/components/sections/CTA"
+import Brands from "@/components/sections/Brands"
 
 export default function Home() {
   return (
@@ -14,6 +15,7 @@ export default function Home() {
       <ClientLogos />
       <Testimonials />
       <CTA />
+      <Brands />
     </main>
   )
 }
