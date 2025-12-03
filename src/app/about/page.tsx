@@ -2,54 +2,62 @@
 
 import { motion } from "framer-motion"
 import { Users, Target, Eye, Heart, Award } from "lucide-react"
-import Bulb from "@/components/sections/Bulb"
+import { FocusCards } from "@/components/ui/focus-cards"
 const team = [
     {
-        name: "John Smith",
-        role: "CEO & Founder",
-        image: "/img.png",
-        bio: "10+ years of experience in digital strategy and business development."
+        title: "Heth Sanghvi - Chief Vibe Officer",
+        src: "/Team Members/Team Members/Heth Sanghvi (CEO) - Chief Vibe Officer.jpg",
     },
     {
-        name: "Sarah Johnson",
-        role: "Creative Director",
-        image: "/img.png",
-        bio: "Award-winning designer with expertise in brand identity and UX design."
+        title: "Saachi Jogani - Mastermind in Chief",
+        src: "/Team Members/Team Members/Saachi Jogani (CCO) - Mastermind in chief .jpeg",
     },
     {
-        name: "Mike Chen",
-        role: "Lead Developer",
-        image: "/img.png",
-        bio: "Full-stack developer specializing in modern web technologies."
+        title: "Suhani Pahade - Chief of Keeping it Together",
+        src: "/Team Members/Team Members/Suhani Pahade (CMO) - Chief of keeping it together .JPG",
     },
     {
-        name: "Emily Davis",
-        role: "Marketing Manager",
-        image: "/img.png",
-        bio: "Digital marketing expert with a focus on growth and conversion optimization."
+        title: "Darshita - Content Genie",
+        src: "/Team Members/Team Members/Darshita - Content Genie.jpeg",
+    },
+    {
+        title: "Ronak - Chief Word Nerd",
+        src: "/Team Members/Team Members/Ronak - Chief Word Nerd.PNG",
+    },
+    {
+        title: "Sakshi - Scroll Stopping Specialist",
+        src: "/Team Members/Team Members/Sakshi - Scroll stopping specialist.jpg",
+    },
+    {
+        title: "Shreya - Head of Aesthetic Affairs",
+        src: "/Team Members/Team Members/Shreya - Head of Aesthetic Affairs.jpg",
+    },
+    {
+        title: "Nivaan - Team Member",
+        src: "/Team Members/Team Members/Nivaan - .jpg",
     }
 ]
 
 const values = [
     {
         icon: <Target className="w-8 h-8" />,
-        title: "Excellence",
-        description: "We strive for excellence in everything we do, delivering exceptional results that exceed expectations."
+        title: "Let's Kick Off with a Vibe Check",
+        description: "We start by understanding your brand's personality and goals to create the perfect digital strategy."
     },
     {
         icon: <Users className="w-8 h-8" />,
-        title: "Collaboration",
-        description: "We believe in the power of collaboration, working closely with our clients as partners."
+        title: "Plan the Adventure",
+        description: "We craft a comprehensive roadmap tailored to your brand's unique journey and objectives."
     },
     {
         icon: <Eye className="w-8 h-8" />,
-        title: "Innovation",
-        description: "We stay ahead of the curve, embracing new technologies and creative approaches."
+        title: "Make it Awesome",
+        description: "We bring your vision to life with creative execution and cutting-edge digital strategies."
     },
     {
         icon: <Heart className="w-8 h-8" />,
-        title: "Passion",
-        description: "We're passionate about what we do and it shows in the quality of our work."
+        title: "High-Five the Results",
+        description: "We celebrate your success together and continuously optimize for even better outcomes."
     }
 ]
 
@@ -76,9 +84,12 @@ export default function About() {
                         <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
                             About SocialVRTX
                         </h1>
+                        <div className="text-2xl md:text-3xl font-semibold text-blue-600 mb-6">
+                            Creating Buzz, Breaking Feeds, Building Brands!
+                        </div>
                         <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                            SocialVRTX is a team of passionate marketers, strategists, and innovators dedicated to
-                            helping businesses thrive through data-driven digital marketing solutions.
+                            We're three friends who turned our group chat into a digital powerhouse. 
+                            We're that rare breed of digital marketing agency that actually likes each other. Founded by three friends (yes, we're still talking), we decided to turn our shared obsession with pixels and witty captions into your brand's digital superpower. We don't just 'boost engagement'; we conjure online magic, minus the rabbits. Think strategic brains, creative sparks, and just enough caffeine to keep the algorithms guessing.
                         </p>
                     </motion.div>
                 </div>
@@ -98,14 +109,10 @@ export default function About() {
                                 Our Story
                             </h2>
                             <p className="text-gray-600 mb-6">
-                                Founded in 2019, SocialVRTX began with a simple mission: to bridge the gap between
-                                innovative marketing technology and meaningful customer connections. What started as a small team
-                                of marketers and strategists has grown into a full-service digital marketing agency.
+                                We are your digital matchmakers, finding your brand's perfect online audience and making them fall in love.
                             </p>
                             <p className="text-gray-600 mb-6">
-                                Today, we work with clients ranging from startups to Fortune 500 companies,
-                                helping them navigate the digital marketing landscape and achieve their business goals
-                                through data-driven strategies and creative campaigns.
+                                Fueled by a passion for digital innovation, Social Vrtx is dedicated to driving your brand's success. We believe in close collaboration, crafting strategies that make a real impact.
                             </p>
                         </motion.div>
                         <motion.div
@@ -138,10 +145,7 @@ export default function About() {
                 </div>
             </section>
 
-            {/* Interactive Bulb Section */}
-            <section className="py-0">
-                <Bulb />
-            </section>y
+           
 
             {/* Mission & Vision */}
             <section className="py-20 bg-gray-50">
@@ -155,10 +159,9 @@ export default function About() {
                             className="text-center"
                         >
                             <Target className="w-16 h-16 text-blue-600 mx-auto mb-6" />
-                            <h3 className="text-2xl font-bold text-gray-900 mb-4">Our Mission</h3>
+                            <h3 className="text-2xl font-bold text-gray-900 mb-4">Our Mission: We Make Brands Unscrollable!</h3>
                             <p className="text-gray-600">
-                                To empower businesses with innovative digital solutions that drive growth,
-                                enhance user experiences, and create lasting value in an ever-evolving digital landscape.
+                                We don't chase trends—we create them. Our mission is simple: Make your brand so cool, so engaging, so ridiculously shareable that people stop scrolling, start talking, and never forget you. Algorithms fear us, engagement loves us, and your brand? It's about to go viral.
                             </p>
                         </motion.div>
                         <motion.div
@@ -169,18 +172,36 @@ export default function About() {
                             className="text-center"
                         >
                             <Eye className="w-16 h-16 text-blue-600 mx-auto mb-6" />
-                            <h3 className="text-2xl font-bold text-gray-900 mb-4">Our Vision</h3>
+                            <h3 className="text-2xl font-bold text-gray-900 mb-4">Our Vision: The Feed Belongs to Us (And Our Clients)</h3>
                             <p className="text-gray-600">
-                                To be the leading digital agency that transforms how businesses connect with
-                                their audiences through cutting-edge technology and exceptional design.
+                                The future of social media belongs to the bold, the witty, and the ones who dare to disrupt. We're here to build brands that don't just exist online but own the space—from viral moments to cult-like communities. If you're ready to stop blending in and start standing out, welcome to the VRTX.
                             </p>
                         </motion.div>
                     </div>
                 </div>
             </section>
 
-            {/* Core Values */}
+            {/* Why Choose Us */}
             <section className="py-20 bg-white">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.8 }}
+                        viewport={{ once: true }}
+                        className="text-center mb-12"
+                    >
+                        <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">Why Choose Us</h2>
+                        <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
+                            We are your digital matchmakers, finding your brand's perfect online audience and making them fall in love. 
+                            Fueled by a passion for digital innovation, Social Vrtx is dedicated to driving your brand's success. We believe in close collaboration, crafting strategies that make a real impact.
+                        </p>
+                    </motion.div>
+                </div>
+            </section>
+
+            {/* Our Process */}
+            <section className="py-20 bg-gray-50">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
@@ -190,10 +211,10 @@ export default function About() {
                         className="text-center mb-16"
                     >
                         <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-                            Our Core Values
+                            Our Process
                         </h2>
                         <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                            These values guide everything we do and shape how we work with our clients and each other.
+                            Here's how we turn your digital dreams into reality, one awesome step at a time.
                         </p>
                     </motion.div>
 
@@ -231,30 +252,20 @@ export default function About() {
                         <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
                             Meet Our Team
                         </h2>
-                        <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                            Our diverse team of experts brings together creativity, technical expertise, and strategic thinking.
+                        <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
+                            Our diverse team of experts brings together creativity, technical expertise, and strategic thinking. 
+                            Hover over the cards to focus on each team member.
                         </p>
                     </motion.div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                        {team.map((member, index) => (
-                            <motion.div
-                                key={index}
-                                initial={{ opacity: 0, y: 20 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                transition={{ duration: 0.8, delay: index * 0.1 }}
-                                viewport={{ once: true }}
-                                className="bg-white rounded-lg p-6 text-center shadow-sm hover:shadow-md transition-shadow"
-                            >
-                                <div className="w-24 h-24 bg-gray-200 rounded-full mx-auto mb-4"></div>
-                                <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                                    {member.name}
-                                </h3>
-                                <p className="text-blue-600 font-medium mb-3">{member.role}</p>
-                                <p className="text-gray-600 text-sm">{member.bio}</p>
-                            </motion.div>
-                        ))}
-                    </div>
+                    <motion.div
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.8, delay: 0.2 }}
+                        viewport={{ once: true }}
+                    >
+                        <FocusCards cards={team} />
+                    </motion.div>
                 </div>
             </section>
 
