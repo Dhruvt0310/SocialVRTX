@@ -122,51 +122,109 @@ export default function BrandsPage() {
   ];
 
   return (
-    <main className="min-h-screen bg-gradient-to-br from-yellow-300 via-yellow-400 to-amber-500 text-slate-900">
-      {/* Grid pattern overlay */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#00000008_1px,transparent_1px),linear-gradient(to_bottom,#00000008_1px,transparent_1px)] bg-[size:60px_60px]"></div>
+    <main className="min-h-screen bg-linear-to-r from-yellow-400 via-yellow-100 to-yellow-300 text-gray-900">
+      {/* Light grid pattern overlay */}
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(0,0,0,0.03)_1px,transparent_1px),linear-gradient(to_bottom,rgba(0,0,0,0.03)_1px,transparent_1px)] bg-[size:60px_60px]"></div>
       
-      {/* Radial gradient overlays for depth */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_30%,rgba(255,255,255,0.15),transparent_40%)]"></div>
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_70%,rgba(0,0,0,0.08),transparent_40%)]"></div>
+      {/* Subtle gradient overlays for depth */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_30%,rgba(251,191,36,0.08),transparent_40%)]"></div>
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_70%,rgba(251,191,36,0.05),transparent_40%)]"></div>
       
       {/* Hero Section */}
       <div className="relative">
         <div className="container mx-auto px-4 sm:px-6 lg:px-12 pt-20 sm:pt-28 lg:pt-32 pb-16 sm:pb-20 lg:pb-24">
-          <div className="max-w-5xl mx-auto text-center">
-            {/* Badge */}
-            <div className="inline-flex items-center gap-2 px-4 sm:px-5 py-2 sm:py-2.5 bg-yellow-400 text-black rounded-full text-xs sm:text-sm font-bold mb-8 sm:mb-10 shadow-lg hover:shadow-xl transition-shadow">
-              <span className="w-2 h-2 bg-black rounded-full animate-pulse"></span>
-              Trusted by Industry Leaders
+          <div className="max-w-6xl mx-auto text-center">
+            {/* Enhanced Badge */}
+            <div className="inline-flex items-center gap-3 px-6 sm:px-8 py-3 sm:py-4 bg-white/80 backdrop-blur-sm border border-gray-200 text-yellow-600 rounded-full text-sm sm:text-base font-bold mb-12 sm:mb-16 shadow-[0_8px_32px_rgba(0,0,0,0.1)] hover:shadow-[0_12px_48px_rgba(251,191,36,0.3)] transition-all duration-300 group">
+              <span className="w-2 h-2 bg-yellow-500 rounded-full animate-pulse"></span>
+              <span className="uppercase tracking-wider">Trusted by Industry Leaders</span>
+              <div className="w-8 h-0.5 bg-linear-to-r from-yellow-500 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
             </div>
             
-            {/* Main Heading */}
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black mb-6 sm:mb-8 tracking-tight text-slate-900 leading-[1.1] drop-shadow-lg px-4">
-              Our <span className="relative inline-block pb-2 sm:pb-3">
-                <span className="relative z-10 text-white">Partners</span>
-                <span className="absolute bottom-0 left-0 w-full h-2 sm:h-3 bg-slate-900 -z-10 "></span>
+            {/* Enhanced Main Heading */}
+            <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-black mb-8 sm:mb-12 tracking-tighter text-gray-900 leading-[0.9] drop-shadow-lg px-4">
+              Our <span className="relative inline-block pb-3 sm:pb-4">
+                <span className="relative z-10 text-transparent bg-clip-text bg-gradient-to-r from-yellow-500 via-orange-500 to-yellow-600 animate-pulse">Partners</span>
+                <span className="absolute bottom-0 left-0 w-full h-3 sm:h-4 bg-gradient-to-r from-yellow-400/40 to-orange-500/40 blur-sm"></span>
+                <span className="absolute bottom-0 left-0 w-full h-2 sm:h-3 bg-gradient-to-r from-yellow-500 to-orange-500"></span>
               </span>
             </h1>
             
-            {/* Subtitle */}
-            <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-slate-900/80 font-medium leading-relaxed max-w-3xl mx-auto drop-shadow-sm px-4">
-              Collaborating with exceptional brands and talented individuals to create meaningful impact
+            {/* Enhanced Subtitle */}
+            <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-gray-600 font-medium leading-relaxed max-w-4xl mx-auto drop-shadow-sm px-4 mb-8">
+              Collaborating with <span className="text-yellow-600 font-bold">exceptional brands</span> and <span className="text-yellow-600 font-bold">talented individuals</span> to create meaningful impact
             </p>
+            
+            {/* Decorative Elements */}
+            <div className="flex items-center justify-center gap-4 mb-8">
+              <div className="w-16 h-0.5 bg-gradient-to-r from-transparent to-yellow-500"></div>
+              <div className="w-3 h-3 border-2 border-yellow-500 rotate-45"></div>
+              <div className="w-16 h-0.5 bg-gradient-to-l from-transparent to-yellow-500"></div>
+            </div>
+            
+            {/* Stats or Additional Info */}
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 sm:gap-12 max-w-3xl mx-auto">
+              <div className="text-center">
+                <div className="text-2xl sm:text-3xl font-black text-yellow-600 mb-2">50+</div>
+                <div className="text-sm sm:text-base text-gray-500 uppercase tracking-wider">Brand Partners</div>
+              </div>
+              <div className="text-center">
+                <div className="text-2xl sm:text-3xl font-black text-yellow-600 mb-2">100+</div>
+                <div className="text-sm sm:text-base text-gray-500 uppercase tracking-wider">Projects Delivered</div>
+              </div>
+              <div className="text-center">
+                <div className="text-2xl sm:text-3xl font-black text-yellow-600 mb-2">5+</div>
+                <div className="text-sm sm:text-base text-gray-500 uppercase tracking-wider">Years Experience</div>
+              </div>
+            </div>
+          </div>
+          
+          {/* Navigation Section */}
+          <div className="max-w-4xl mx-auto mt-16 sm:mt-20">
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-8">
+              <button
+                onClick={() => document.getElementById('brand-partners')?.scrollIntoView({ behavior: 'smooth' })}
+                className="group flex items-center gap-3 px-6 sm:px-8 py-3 sm:py-4 bg-white border-2 border-gray-600 hover:border-yellow-500 text-gray-800 hover:text-yellow-600 font-bold text-sm sm:text-base uppercase tracking-wider transition-all duration-300 shadow-[4px_4px_0px_0px_rgba(0,0,0,0.1)] hover:shadow-[6px_6px_0px_0px_rgba(251,191,36,0.3)] hover:translate-x-1 hover:-translate-y-1"
+              >
+                <span className="w-2 h-2 bg-yellow-500 rounded-full"></span>
+                Brand Partners
+                <svg className="w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+                </svg>
+              </button>
+              
+              <div className="w-px h-8 bg-gray-300 hidden sm:block"></div>
+              
+              <button
+                onClick={() => document.getElementById('personal-businesses')?.scrollIntoView({ behavior: 'smooth' })}
+                className="group flex items-center gap-3 px-6 sm:px-8 py-3 sm:py-4 bg-white border-2 border-gray-600 hover:border-yellow-500 text-gray-800 hover:text-yellow-600 font-bold text-sm sm:text-base uppercase tracking-wider transition-all duration-300 shadow-[4px_4px_0px_0px_rgba(0,0,0,0.1)] hover:shadow-[6px_6px_0px_0px_rgba(251,191,36,0.3)] hover:translate-x-1 hover:-translate-y-1"
+              >
+                <span className="w-2 h-2 bg-yellow-500 rounded-full"></span>
+                Personal Businesses
+                <svg className="w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+                </svg>
+              </button>
+            </div>
           </div>
         </div>
       </div>
 
       {/* Brand Partners Section */}
-      <div className="container mx-auto px-6 lg:px-12 py-20 relative">
-        <div className="mb-12 sm:mb-16 lg:mb-20">
-          <div className="inline-block px-3 sm:px-4 py-1 sm:py-1.5 bg-yellow-400 text-black text-[10px] sm:text-xs font-bold rounded-full mb-4 sm:mb-6">
-            BRANDS
+      <div id="brand-partners" className="container mx-auto px-4 sm:px-6 lg:px-12 py-16 sm:py-20 lg:py-24 relative">
+        <div className="mb-16 sm:mb-20">
+          <div className="flex items-center gap-6 mb-8">
+            <div className="w-12 h-1 bg-gray-300"></div>
+            <div className="px-4 py-2 bg-white/80 border border-gray-200 text-gray-600 text-xs font-black uppercase tracking-widest shadow-sm">
+              BRANDS
+            </div>
+            <div className="flex-1 h-1 bg-gradient-to-r from-gray-300/50 to-transparent"></div>
           </div>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black tracking-tight text-slate-900 mb-3 sm:mb-4">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black tracking-tighter text-gray-800 mb-6 uppercase">
             Brand Partners
           </h2>
-          <p className="text-sm sm:text-base lg:text-lg text-slate-600 max-w-2xl">
-            Companies we've helped grow and succeed through strategic partnerships
+          <p className="text-lg sm:text-xl text-gray-600 max-w-3xl font-medium">
+            Companies we've helped grow and succeed through strategic partnerships and innovative solutions
           </p>
         </div>
         
@@ -174,16 +232,20 @@ export default function BrandsPage() {
       </div>
 
       {/* Personal Businesses Section */}
-      <div className="container mx-auto px-6 lg:px-12 py-20 relative">
-        <div className="mb-12 sm:mb-16 lg:mb-20">
-          <div className="inline-block px-3 sm:px-4 py-1 sm:py-1.5 bg-yellow-400 text-black text-[10px] sm:text-xs font-bold rounded-full mb-4 sm:mb-6">
-            INDIVIDUALS
+      <div id="personal-businesses" className="container mx-auto px-4 sm:px-6 lg:px-12 py-16 sm:py-20 lg:py-24 relative">
+        <div className="mb-16 sm:mb-20">
+          <div className="flex items-center gap-6 mb-8">
+            <div className="w-12 h-1 bg-gray-300"></div>
+            <div className="px-4 py-2 bg-white/80 border border-gray-200 text-gray-600 text-xs font-black uppercase tracking-widest shadow-sm">
+              INDIVIDUALS
+            </div>
+            <div className="flex-1 h-1 bg-gradient-to-r from-gray-300/50 to-transparent"></div>
           </div>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black tracking-tight text-slate-900 mb-3 sm:mb-4">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black tracking-tighter text-gray-800 mb-6 uppercase">
             Personal Businesses
           </h2>
-          <p className="text-sm sm:text-base lg:text-lg text-slate-600 max-w-2xl">
-            Individual entrepreneurs and consultants we collaborate with
+          <p className="text-lg sm:text-xl text-gray-600 max-w-3xl font-medium">
+            Individual entrepreneurs and consultants who bring exceptional expertise to every project
           </p>
         </div>
         
@@ -191,27 +253,27 @@ export default function BrandsPage() {
       </div>
 
       {/* CTA Section */}
-      <div className="container mx-auto px-6 lg:px-12 py-16 sm:py-24 lg:py-32">
-        <div className="relative bg-slate-900 rounded-2xl sm:rounded-3xl p-8 sm:p-12 md:p-16 lg:p-24 overflow-hidden">
-          {/* Yellow accent bar */}
-          <div className="absolute top-0 left-0 w-full h-1 sm:h-2 bg-yellow-400"></div>
-          
-          <div className="relative z-10 text-center max-w-3xl mx-auto">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-white mb-4 sm:mb-6 leading-tight">
-              Ready to Partner With Us?
-            </h2>
-            <p className="text-sm sm:text-base md:text-lg lg:text-xl text-slate-300 mb-8 sm:mb-10 lg:mb-12 leading-relaxed">
-              Join our network of successful brands and talented professionals. Let's create something extraordinary together.
-            </p>
-            <a
-              href="/contact"
-              className="inline-flex items-center gap-2 sm:gap-3 px-6 sm:px-8 lg:px-10 py-3 sm:py-4 lg:py-5 bg-yellow-400 text-black font-bold text-sm sm:text-base rounded-full hover:bg-yellow-300 transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105"
-            >
-              Start a Conversation
-              <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-              </svg>
-            </a>
+      <div className="container mx-auto px-4 sm:px-6 lg:px-12 py-16 sm:py-24 lg:py-32 relative">
+        <div className="relative bg-gradient-to-r from-gray-100 to-white p-1 max-w-5xl mx-auto border border-gray-200 shadow-xl">
+          <div className="bg-white p-8 sm:p-12 md:p-16 lg:p-20">
+            <div className="text-center">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-gray-900 mb-6 sm:mb-8 tracking-tighter uppercase">
+                Ready to Partner?
+              </h2>
+              <p className="text-lg sm:text-xl md:text-2xl text-gray-600 mb-10 sm:mb-12 leading-relaxed max-w-3xl mx-auto">
+                Join our network of successful brands and talented professionals. 
+                <span className="text-yellow-600 font-bold"> Let's create something extraordinary.</span>
+              </p>
+              <a
+                href="/contact"
+                className="inline-flex items-center gap-4 px-8 sm:px-10 lg:px-12 py-4 sm:py-5 lg:py-6 bg-yellow-500 text-white font-black text-sm sm:text-base lg:text-lg uppercase tracking-wider hover:bg-yellow-600 transition-all duration-300 shadow-[8px_8px_0px_0px_rgba(251,191,36,0.3)] hover:shadow-[12px_12px_0px_0px_rgba(251,191,36,0.5)] hover:translate-x-1 hover:-translate-y-1"
+              >
+                Start Conversation
+                <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </a>
+            </div>
           </div>
         </div>
       </div>
