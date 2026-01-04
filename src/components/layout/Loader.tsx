@@ -11,11 +11,9 @@ export default function Loader() {
   const [hasLoaded, setHasLoaded] = useState(false);
 
   useEffect(() => {
-    // Hide navbar during loader
     const navbar = document.querySelector("nav");
     if (navbar) navbar.style.display = "none";
 
-    // Disable scroll while loader is active
     document.body.style.overflow = "hidden";
 
     const hasLoadedBefore = sessionStorage.getItem("siteLoaded");
@@ -28,7 +26,6 @@ export default function Loader() {
       return;
     }
 
-    // === Trigger roll-up animation after 5 seconds ===
     const rollTimer = setTimeout(() => {
       setIsRollingUp(true);
       setTimeout(() => {
@@ -37,8 +34,8 @@ export default function Loader() {
         document.body.style.overflow = "auto";
         if (navbar) navbar.style.display = "flex";
         setHasLoaded(true);
-      }, 1200); // matches roll-up animation duration
-    }, 4000);
+      }, 600);
+    }, 2000);
 
     return () => clearTimeout(rollTimer);
   }, []);
@@ -51,46 +48,44 @@ export default function Loader() {
       initial={{ y: 0, opacity: 1 }}
       animate={
         isRollingUp
-          ? { y: "-100%", opacity: 0, transition: { duration: 1.2, ease: "easeInOut" } }
+          ? {
+              y: "-100%",
+              opacity: 0,
+              transition: { duration: 1.2, ease: "easeInOut" },
+            }
           : { y: 0, opacity: 1 }
       }
     >
-      {/* Bulb component */}
       <div className="relative">
-        <Bulb originX="36%" originY="35%" autoPullDelay={700} />
-      </div>
-
-      <div className="absolute left-[20%] top-[24%] select-none pointer-events-none">
-        <Image
-          src={"/S.png"}
-          alt="Loader visual"
-          width={200}
-          height={200}
-          className="object-contain opacity-90 select-none pointer-events-none"
-          draggable={false}
+        <Bulb
+          cordScale={1}
+          cordOffsetX={600}
+          cordOffsetY={-10}
+          bulbScale={0.65}
+          bulbOffsetX={-200}
+          bulbOffsetY={-210}
         />
       </div>
 
-      <div className="absolute left-[38%] top-[27%] select-none pointer-events-none">
-        <Image
-          src={"/CIAL.png"}
-          alt="Loader visual"
-          width={600}
-          height={650}
-          className="object-contain opacity-90 select-none pointer-events-none"
-          draggable={false}
-        />
+      {/* S */}
+      <div className="absolute left-[28%] top-[27%] select-none pointer-events-none">
+        <Image src="/SV/S.svg" alt="S" width={180} height={180} draggable={false} />
       </div>
 
-      <div className="absolute left-[30%] top-[55%] select-none pointer-events-none">
-        <Image
-          src={"/VRTX.png"}
-          alt="Loader visual"
-          width={600}
-          height={650}
-          className="object-contain opacity-90 select-none pointer-events-none"
-          draggable={false}
-        />
+      {/* C I A L */}
+      <div className="absolute left-[40%] top-[27%] flex -space-x-20 select-none pointer-events-none">
+        <Image src="/SV/C.svg" alt="C" width={180} height={180} draggable={false} />
+        <Image src="/SV/I.svg" alt="I" width={180} height={180} draggable={false} />
+        <Image src="/SV/A.svg" alt="A" width={180} height={180} draggable={false} />
+        <Image src="/SV/L.svg" alt="L" width={180} height={180} draggable={false} />
+      </div>
+
+      {/* V R T X */}
+      <div className="absolute left-[35%] top-[55%] flex -space-x-20 select-none pointer-events-none">
+        <Image src="/SV/V.svg" alt="V" width={180} height={180} draggable={false} />
+        <Image src="/SV/R.svg" alt="R" width={180} height={180} draggable={false} />
+        <Image src="/SV/T.svg" alt="T" width={180} height={180} draggable={false} />
+        <Image src="/SV/X.svg" alt="X" width={180} height={180} draggable={false} />
       </div>
     </motion.div>
   );

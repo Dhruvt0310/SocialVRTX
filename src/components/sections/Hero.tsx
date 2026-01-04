@@ -16,7 +16,7 @@ export default function Hero() {
 
             {/* TOP CONTENT */}
             <div className="flex-1 pt-18 text-black">
-              <div className="font-light leading-tight">
+              <div className="font-extrabold leading-tight">
 
                 <div className="pl-8 text-[3rem] md:text-[3.8rem] lg:text-[4.7rem]">
                   Transform
