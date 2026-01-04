@@ -7,9 +7,9 @@ const Loader = dynamic(() => import("./Loader"), { ssr: false });
 
 export default function ClientOnlyLoader() {
   const [showLoader, setShowLoader] = useState(true);
-  const [showContent, setShowContent] = useState(false);
 
   useEffect(() => {
+    // Fade out SSR curtain safely
     const curtain = document.getElementById("ssr-curtain");
     if (curtain) {
       curtain.style.opacity = "0";
@@ -20,33 +20,18 @@ export default function ClientOnlyLoader() {
 
     if (hasLoaded) {
       setShowLoader(false);
-      setShowContent(true);
       return;
     }
-
-    // Hide content initially and show loader
-    setShowContent(false);
 
     const t = setTimeout(() => {
       sessionStorage.setItem("siteLoaded", "true");
       setShowLoader(false);
-      // Delay showing content slightly to ensure smooth transition
-      setTimeout(() => {
-        setShowContent(true);
-      }, 100);
     }, 2600);
 
     return () => clearTimeout(t);
   }, []);
 
-  return (
-    <>
-      {/* Content is conditionally rendered - completely hidden during loading */}
-      {showContent && (
-        <div className="animate-fadeIn">
-          {children}
-        </div>
-      )}
+  if (!showLoader) return null;
 
   return <Loader />;
 }
