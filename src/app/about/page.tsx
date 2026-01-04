@@ -1,8 +1,10 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { Users, Target, Eye, Heart, Award } from "lucide-react"
+import { Users, Target, Eye, Heart } from "lucide-react"
 import { FocusCards } from "@/components/ui/focus-cards"
+import { Spotlight } from "@/components/ui/spotlight"
+
 const team = [
     {
         title: "Heth Sanghvi - Chief Vibe Officer",
@@ -41,317 +43,195 @@ const team = [
 const values = [
     {
         icon: <Target className="w-8 h-8" />,
-        title: "Let's Kick Off with a Vibe Check",
-        description: "We start by understanding your brand's personality and goals to create the perfect digital strategy."
+        title: "Let's Kick Off with a Vibe Check"
     },
     {
         icon: <Users className="w-8 h-8" />,
-        title: "Plan the Adventure",
-        description: "We craft a comprehensive roadmap tailored to your brand's unique journey and objectives."
+        title: "Plan the Adventure"
     },
     {
         icon: <Eye className="w-8 h-8" />,
-        title: "Make it Awesome",
-        description: "We bring your vision to life with creative execution and cutting-edge digital strategies."
+        title: "Make it Awesome"
     },
     {
         icon: <Heart className="w-8 h-8" />,
-        title: "High-Five the Results",
-        description: "We celebrate your success together and continuously optimize for even better outcomes."
+        title: "High-Five the Results"
     }
-]
-
-const timeline = [
-    { year: "2019", event: "Company Founded", description: "Started with a vision to transform digital experiences" },
-    { year: "2020", event: "First Major Client", description: "Landed our first enterprise client and expanded the team" },
-    { year: "2021", event: "Award Recognition", description: "Won 'Best Digital Agency' award from Industry Association" },
-    { year: "2022", event: "International Expansion", description: "Opened offices in London and Toronto" },
-    { year: "2023", event: "50+ Projects", description: "Successfully completed over 50 projects for clients worldwide" },
-    { year: "2024", event: "Innovation Lab", description: "Launched our innovation lab focusing on AI and emerging technologies" }
 ]
 
 export default function About() {
     return (
-        <div className="pt-20">
-            {/* Hero Section */}
-            <section className="py-20 bg-gradient-to-br from-blue-50 to-indigo-100">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8 }}
-                    >
-                        <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
-                            About SocialVRTX
-                        </h1>
-                        <div className="text-2xl md:text-3xl font-semibold text-blue-600 mb-6">
-                            Creating Buzz, Breaking Feeds, Building Brands!
-                        </div>
-                        <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                            We're three friends who turned our group chat into a digital powerhouse. 
-                            We're that rare breed of digital marketing agency that actually likes each other. Founded by three friends (yes, we're still talking), we decided to turn our shared obsession with pixels and witty captions into your brand's digital superpower. We don't just 'boost engagement'; we conjure online magic, minus the rabbits. Think strategic brains, creative sparks, and just enough caffeine to keep the algorithms guessing.
-                        </p>
-                    </motion.div>
-                </div>
-            </section>
+        <div className="min-h-screen bg-linear-to-b from-yellow-50 via-white to-amber-50 relative overflow-hidden">
+            <Spotlight className="-top-40 left-0 md:left-60 md:-top-20" fill="yellow" />
 
-            {/* Story Section */}
-            <section className="py-20 bg-white">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            {/* soft background blobs */}
+            <div aria-hidden className="pointer-events-none absolute inset-0">
+                <div className="absolute -top-24 -left-24 h-72 w-72 rounded-full bg-yellow-200/50 blur-3xl" />
+                <div className="absolute top-32 -right-24 h-80 w-80 rounded-full bg-amber-200/50 blur-3xl" />
+                <div className="absolute bottom-0 left-1/3 h-80 w-80 rounded-full bg-yellow-300/30 blur-3xl" />
+            </div>
+
+            <main className="relative pt-24 pb-24">
+                {/* Hero */}
+                <section className="px-4 sm:px-6 lg:px-8">
+                    <div className="max-w-6xl mx-auto">
                         <motion.div
-                            initial={{ opacity: 0, x: -20 }}
-                            whileInView={{ opacity: 1, x: 0 }}
-                            transition={{ duration: 0.8 }}
-                            viewport={{ once: true }}
+                            initial={{ opacity: 0, y: 18 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.7 }}
+                            className="text-center"
                         >
-                            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
-                                Our Story
-                            </h2>
-                            <p className="text-gray-600 mb-6">
-                                We are your digital matchmakers, finding your brand's perfect online audience and making them fall in love.
-                            </p>
-                            <p className="text-gray-600 mb-6">
-                                Fueled by a passion for digital innovation, Social Vrtx is dedicated to driving your brand's success. We believe in close collaboration, crafting strategies that make a real impact.
+                           
+
+                            <h1 className="mt-6 text-5xl md:text-7xl font-extrabold tracking-tight">
+                                <span className="bg-clip-text text-transparent bg-linear-to-r from-yellow-700 via-amber-600 to-yellow-600">
+                                    About Us
+                                </span>
+                            </h1>
+
+                            <p className="mt-6 text-lg md:text-xl text-gray-800/90 max-w-4xl mx-auto leading-relaxed">
+                                We're three friends who turned our group chat into a digital powerhouse.
+                                We're that rare breed of digital marketing agency that actually likes each other. Founded by three friends (yes, we're still talking), we decided to turn our shared obsession with pixels and witty captions into your brand's{" "}
+                                <span className="text-yellow-700 font-semibold">digital superpower</span>. We don't just 'boost engagement'; we conjure online magic, minus the rabbits. Think strategic brains, creative sparks, and just enough caffeine to keep the algorithms guessing.
                             </p>
                         </motion.div>
+                    </div>
+                </section>
+
+                {/* Why Choose Us */}
+                <section className="mt-16 px-4 sm:px-6 lg:px-8">
+                    <div className="max-w-6xl mx-auto">
                         <motion.div
-                            initial={{ opacity: 0, x: 20 }}
-                            whileInView={{ opacity: 1, x: 0 }}
-                            transition={{ duration: 0.8 }}
+                            initial={{ opacity: 0, y: 18 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.7 }}
                             viewport={{ once: true }}
-                            className="bg-gray-100 rounded-lg p-8"
+                            className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 items-stretch"
                         >
-                            <div className="grid grid-cols-2 gap-6 text-center">
-                                <div>
-                                    <div className="text-3xl font-bold text-blue-600">150+</div>
-                                    <div className="text-gray-600">Projects Completed</div>
+                            <div className="lg:col-span-5">
+                                <div className="h-full rounded-3xl border border-yellow-200 bg-linear-to-br from-white/80 to-yellow-50/80 backdrop-blur-sm p-8 shadow-sm">
+                                    <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
+                                        Why Choose Us
+                                    </h2>
+                                    <p className="mt-4 text-gray-700 leading-relaxed">
+                                        We are your digital matchmakers, finding your brand's perfect online audience and making them{" "}
+                                        <span className="text-yellow-700 font-semibold">fall in love</span>.
+                                    </p>
                                 </div>
-                                <div>
-                                    <div className="text-3xl font-bold text-blue-600">50+</div>
-                                    <div className="text-gray-600">Happy Clients</div>
-                                </div>
-                                <div>
-                                    <div className="text-3xl font-bold text-blue-600">15+</div>
-                                    <div className="text-gray-600">Team Members</div>
-                                </div>
-                                <div>
-                                    <div className="text-3xl font-bold text-blue-600">5+</div>
-                                    <div className="text-gray-600">Years Experience</div>
+                            </div>
+
+                            <div className="lg:col-span-7">
+                                <div className="h-full rounded-3xl border border-yellow-200 bg-white/70 backdrop-blur-sm p-8 shadow-sm">
+                                    <p className="text-gray-700 leading-relaxed text-lg">
+                                        Fueled by a passion for digital innovation, Social Vrtx is dedicated to driving your brand's success. We believe in close collaboration, crafting strategies that make a real impact.
+                                    </p>
+
+                                    <div className="mt-6 flex flex-wrap items-center justify-center lg:justify-start gap-3">
+                                        {["Strategy", "Creativity", "Consistency", "Collaboration"].map((chip) => (
+                                            <span
+                                                key={chip}
+                                                className="rounded-full border border-yellow-200 bg-yellow-50 px-4 py-2 text-sm font-medium text-gray-800"
+                                            >
+                                                {chip}
+                                            </span>
+                                        ))}
+                                    </div>
                                 </div>
                             </div>
                         </motion.div>
                     </div>
-                </div>
-            </section>
+                </section>
 
-           
-
-            {/* Mission & Vision */}
-            <section className="py-20 bg-gray-50">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+                {/* Our Process */}
+                <section className="mt-20 px-4 sm:px-6 lg:px-8">
+                    <div className="max-w-6xl mx-auto">
                         <motion.div
-                            initial={{ opacity: 0, y: 20 }}
+                            initial={{ opacity: 0, y: 18 }}
                             whileInView={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.8 }}
+                            transition={{ duration: 0.7 }}
                             viewport={{ once: true }}
                             className="text-center"
                         >
-                            <Target className="w-16 h-16 text-blue-600 mx-auto mb-6" />
-                            <h3 className="text-2xl font-bold text-gray-900 mb-4">Our Mission: We Make Brands Unscrollable!</h3>
-                            <p className="text-gray-600">
-                                We don't chase trends—we create them. Our mission is simple: Make your brand so cool, so engaging, so ridiculously shareable that people stop scrolling, start talking, and never forget you. Algorithms fear us, engagement loves us, and your brand? It's about to go viral.
+                            <h2 className="text-3xl md:text-4xl font-bold text-gray-900">Our Process</h2>
+                            <p className="mt-3 text-gray-700 max-w-3xl mx-auto">
+                                Here's how we turn your digital dreams into{" "}
+                                <span className="text-yellow-700 font-semibold">reality</span>, one awesome step at a time.
                             </p>
                         </motion.div>
-                        <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.8, delay: 0.2 }}
-                            viewport={{ once: true }}
-                            className="text-center"
-                        >
-                            <Eye className="w-16 h-16 text-blue-600 mx-auto mb-6" />
-                            <h3 className="text-2xl font-bold text-gray-900 mb-4">Our Vision: The Feed Belongs to Us (And Our Clients)</h3>
-                            <p className="text-gray-600">
-                                The future of social media belongs to the bold, the witty, and the ones who dare to disrupt. We're here to build brands that don't just exist online but own the space—from viral moments to cult-like communities. If you're ready to stop blending in and start standing out, welcome to the VRTX.
-                            </p>
-                        </motion.div>
-                    </div>
-                </div>
-            </section>
 
-            {/* Why Choose Us */}
-            <section className="py-20 bg-white">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8 }}
-                        viewport={{ once: true }}
-                        className="text-center mb-12"
-                    >
-                        <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">Why Choose Us</h2>
-                        <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
-                            We are your digital matchmakers, finding your brand's perfect online audience and making them fall in love. 
-                            Fueled by a passion for digital innovation, Social Vrtx is dedicated to driving your brand's success. We believe in close collaboration, crafting strategies that make a real impact.
-                        </p>
-                    </motion.div>
-                </div>
-            </section>
-
-            {/* Our Process */}
-            <section className="py-20 bg-gray-50">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8 }}
-                        viewport={{ once: true }}
-                        className="text-center mb-16"
-                    >
-                        <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-                            Our Process
-                        </h2>
-                        <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                            Here's how we turn your digital dreams into reality, one awesome step at a time.
-                        </p>
-                    </motion.div>
-
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                        {values.map((value, index) => (
-                            <motion.div
-                                key={index}
-                                initial={{ opacity: 0, y: 20 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                transition={{ duration: 0.8, delay: index * 0.1 }}
-                                viewport={{ once: true }}
-                                className="text-center"
-                            >
-                                <div className="text-blue-600 mb-4 flex justify-center">{value.icon}</div>
-                                <h3 className="text-xl font-semibold text-gray-900 mb-3">
-                                    {value.title}
-                                </h3>
-                                <p className="text-gray-600">{value.description}</p>
-                            </motion.div>
-                        ))}
-                    </div>
-                </div>
-            </section>
-
-            {/* Team Section */}
-            <section className="py-20 bg-gray-50">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8 }}
-                        viewport={{ once: true }}
-                        className="text-center mb-16"
-                    >
-                        <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-                            Meet Our Team
-                        </h2>
-                        <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
-                            Our diverse team of experts brings together creativity, technical expertise, and strategic thinking. 
-                            Hover over the cards to focus on each team member.
-                        </p>
-                    </motion.div>
-
-                    <motion.div
-                        initial={{ opacity: 0, y: 30 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8, delay: 0.2 }}
-                        viewport={{ once: true }}
-                    >
-                        <FocusCards cards={team} />
-                    </motion.div>
-                </div>
-            </section>
-
-            {/* Company Timeline */}
-            <section className="py-20 bg-white">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8 }}
-                        viewport={{ once: true }}
-                        className="text-center mb-16"
-                    >
-                        <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-                            Our Journey
-                        </h2>
-                        <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                            From humble beginnings to industry recognition, here's how we've grown over the years.
-                        </p>
-                    </motion.div>
-
-                    <div className="relative">
-                        <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-blue-200"></div>
-                        <div className="space-y-12">
-                            {timeline.map((item, index) => (
+                        <div className="mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                            {values.map((value, index) => (
                                 <motion.div
                                     key={index}
-                                    initial={{ opacity: 0, x: index % 2 === 0 ? -20 : 20 }}
-                                    whileInView={{ opacity: 1, x: 0 }}
-                                    transition={{ duration: 0.8, delay: index * 0.1 }}
+                                    initial={{ opacity: 0, y: 18 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    transition={{ duration: 0.7, delay: index * 0.05 }}
                                     viewport={{ once: true }}
-                                    className={`flex items-center ${index % 2 === 0 ? 'flex-row' : 'flex-row-reverse'}`}
+                                    className="relative rounded-3xl border border-yellow-200 bg-linear-to-br from-white/80 to-yellow-50/80 backdrop-blur-sm p-7 shadow-sm hover:shadow-md hover:border-yellow-300 transition-all"
                                 >
-                                    <div className={`w-1/2 ${index % 2 === 0 ? 'pr-8 text-right' : 'pl-8 text-left'}`}>
-                                        <div className="bg-white p-6 rounded-lg shadow-sm">
-                                            <div className="text-blue-600 font-bold text-lg mb-2">{item.year}</div>
-                                            <h3 className="text-xl font-semibold text-gray-900 mb-2">{item.event}</h3>
-                                            <p className="text-gray-600">{item.description}</p>
+                                    <div className="flex items-center justify-between">
+                                        <div className="flex items-center justify-center h-12 w-12 rounded-2xl bg-yellow-100 text-yellow-700">
+                                            {value.icon}
                                         </div>
+                            
                                     </div>
-                                    <div className="relative z-10">
-                                        <div className="w-4 h-4 bg-blue-600 rounded-full border-4 border-white shadow"></div>
-                                    </div>
-                                    <div className="w-1/2"></div>
+
+                                    <h3 className="mt-5 text-lg font-semibold text-gray-900">{value.title}</h3>
                                 </motion.div>
                             ))}
                         </div>
                     </div>
-                </div>
-            </section>
+                </section>
 
-            {/* Awards & Recognition */}
-            <section className="py-20 bg-gray-50">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8 }}
-                        viewport={{ once: true }}
-                    >
-                        <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-                            Awards & Recognition
-                        </h2>
-                        <p className="text-xl text-gray-600 mb-12 max-w-3xl mx-auto">
-                            We're proud to be recognized by industry leaders for our exceptional work and innovation.
-                        </p>
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                            <div className="bg-white p-8 rounded-lg shadow-sm">
-                                <Award className="w-12 h-12 text-blue-600 mx-auto mb-4" />
-                                <h3 className="text-lg font-semibold text-gray-900 mb-2">Best Digital Agency 2023</h3>
-                                <p className="text-gray-600">Industry Association Award</p>
-                            </div>
-                            <div className="bg-white p-8 rounded-lg shadow-sm">
-                                <Award className="w-12 h-12 text-blue-600 mx-auto mb-4" />
-                                <h3 className="text-lg font-semibold text-gray-900 mb-2">Innovation Excellence</h3>
-                                <p className="text-gray-600">Tech Innovation Awards 2022</p>
-                            </div>
-                            <div className="bg-white p-8 rounded-lg shadow-sm">
-                                <Award className="w-12 h-12 text-blue-600 mx-auto mb-4" />
-                                <h3 className="text-lg font-semibold text-gray-900 mb-2">Client Satisfaction</h3>
-                                <p className="text-gray-600">Service Excellence Award 2021</p>
-                            </div>
+                {/* Team Section (keep FocusCards intact) */}
+                <section className="mt-20 px-4 sm:px-6 lg:px-8">
+                    <div className="max-w-6xl mx-auto">
+                        <motion.div
+                            initial={{ opacity: 0, y: 18 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.7 }}
+                            viewport={{ once: true }}
+                            className="text-center"
+                        >
+                            <h2 className="text-3xl md:text-4xl font-bold text-gray-900">Meet Our Team</h2>
+                            <p className="mt-3 text-gray-700 max-w-3xl mx-auto">
+                                Our diverse team of experts brings together{" "}
+                                <span className="text-yellow-700 font-semibold">creativity</span>, technical expertise, and strategic thinking.
+                                Hover over the cards to focus on each team member.
+                            </p>
+                        </motion.div>
+
+                        <div className="mt-10 rounded-3xl border border-yellow-200 bg-white/70 backdrop-blur-sm p-6 md:p-8 shadow-sm">
+                            <motion.div
+                                initial={{ opacity: 0, y: 26 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                transition={{ duration: 0.7, delay: 0.1 }}
+                                viewport={{ once: true }}
+                            >
+                                <FocusCards cards={team} />
+                            </motion.div>
                         </div>
-                    </motion.div>
-                </div>
-            </section>
+                    </div>
+                </section>
+
+                {/* Testimonials */}
+                <section className="mt-20 px-4 sm:px-6 lg:px-8">
+                    <div className="max-w-6xl mx-auto">
+                        <motion.div
+                            initial={{ opacity: 0, y: 18 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.7 }}
+                            viewport={{ once: true }}
+                            className="rounded-3xl border border-yellow-200 bg-linear-to-br from-white/80 to-amber-50/80 backdrop-blur-sm p-10 md:p-14 text-center shadow-sm"
+                        >
+                            <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
+                                Our Collection of{" "}
+                                <span className="text-yellow-700">Digital Love Letters</span>
+                            </h2>
+                        </motion.div>
+                    </div>
+                </section>
+            </main>
         </div>
     )
 }
