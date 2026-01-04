@@ -6,13 +6,13 @@ import { AceternityButton } from "@/components/ui/aceternity-button";
 
 export default function ContactPage() {
   return (
-    <div className="min-h-screen bg-black antialiased bg-grid-yellow-500/[0.05] relative overflow-hidden">
+    <div className="min-h-screen bg-linear-to-br from-black to-yellow-900 antialiased bg-grid-yellow-500/[0.05] relative overflow-hidden">
       <Spotlight
         className="-top-40 left-0 md:left-60 md:-top-20"
         fill="yellow"
       />
       <div className="p-4 max-w-7xl mx-auto relative z-10 w-full pt-20 md:pt-0">
-        <h1 className="text-4xl md:text-7xl font-bold text-center bg-clip-text text-transparent bg-gradient-to-b from-yellow-400 via-white to-yellow-300 bg-opacity-50">
+        <h1 className="text-4xl md:text-7xl font-bold text-center bg-clip-text text-transparent bg-gradient-to-br from-yellow-400 via-white to-yellow-300 bg-opacity-50">
           Get In Touch
         </h1>
         <p className="mt-4 font-normal text-lg text-white/90 max-w-2xl text-center mx-auto">
@@ -25,7 +25,7 @@ export default function ContactPage() {
           {/* Left Column - Contact Form and Info */}
           <div className="flex-1 space-y-8">
             {/* Contact Form */}
-            <div className="bg-white/5 backdrop-blur-md border border-yellow-500/30 rounded-xl p-8 shadow-2xl">
+            <div className="bg-linear-to-br from-black to-yellow-900/30 backdrop-blur-md border border-yellow-500/30 rounded-xl p-8 shadow-2xl">
               <h2 className="text-2xl font-bold text-yellow-400 mb-6 flex items-center">
                 <svg className="w-6 h-6 mr-2" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
@@ -61,7 +61,7 @@ export default function ContactPage() {
             </div>
 
             {/* Contact Information */}
-            <div className="bg-white/5 backdrop-blur-md border border-yellow-500/30 rounded-xl p-6 shadow-xl">
+            <div className="bg-linear-to-br from-black to-yellow-900/30 backdrop-blur-md border border-yellow-500/30 rounded-xl p-6 shadow-xl">
               <h3 className="text-xl font-bold text-yellow-400 mb-4 flex items-center">
                 <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
@@ -121,7 +121,7 @@ export default function ContactPage() {
             </div>
 
             {/* Social Media Links */}
-            <div className="bg-white/5 backdrop-blur-md border border-yellow-500/30 rounded-xl p-6 shadow-xl">
+            <div className="bg-linear-to-br from-black to-yellow-900/30 backdrop-blur-md border border-yellow-500/30 rounded-xl p-6 shadow-xl">
               <h3 className="text-xl font-bold text-yellow-400 mb-4 flex items-center">
                 <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/>
@@ -158,7 +158,7 @@ export default function ContactPage() {
           {/* Right Column - Map and Quick Actions */}
           <div className="flex-1 space-y-8">
             {/* Google Map */}
-            <div className="bg-white/5 backdrop-blur-md border border-yellow-500/30 rounded-xl p-6 shadow-xl">
+            <div className="bg-linear-to-br from-black to-yellow-900/30 backdrop-blur-md border border-yellow-500/30 rounded-xl p-6 shadow-xl">
               <h3 className="text-xl font-bold text-yellow-400 mb-4 flex items-center">
                 <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
@@ -180,7 +180,7 @@ export default function ContactPage() {
             </div>
 
             {/* Quick Actions */}
-            <div className="bg-white/5 backdrop-blur-md border border-yellow-500/30 rounded-xl p-6 shadow-xl">
+            <div className="bg-linear-to-br from-black to-yellow-900/30 backdrop-blur-md border border-yellow-500/30 rounded-xl p-6 shadow-xl">
               <h3 className="text-xl font-bold text-yellow-400 mb-4 flex items-center">
                 <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/>
@@ -231,7 +231,7 @@ export default function ContactPage() {
             </div>
 
             {/* Business Hours Card */}
-            <div className="bg-white/5 backdrop-blur-md border border-yellow-500/30 rounded-xl p-6 shadow-xl">
+            <div className="bg-linear-to-br from-black to-yellow-900/30 backdrop-blur-md border border-yellow-500/30 rounded-xl p-6 shadow-xl">
               <h3 className="text-xl font-bold text-yellow-400 mb-4 flex items-center">
                 <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/>

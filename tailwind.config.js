@@ -12,6 +12,9 @@ module.exports = {
   darkMode: "class",
   theme: {
     extend: {
+      fontFamily: {
+        sans: ['var(--font-inter)', 'sans-serif'],
+      },
       animation: {
         aurora: "aurora 60s linear infinite",
         "meteor-effect": "meteor 5s linear infinite",

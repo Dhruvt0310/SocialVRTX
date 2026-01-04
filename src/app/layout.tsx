@@ -5,15 +5,15 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import ClientOnlyLoader from "@/components/layout/ClientOnlyLoader";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const inter = Inter({
+  variable: "--font-inter",
   subsets: ["latin"],
-});
+})
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
-});
+})
 
 export const metadata: Metadata = {
   title: "Social Vortex - Digital Marketing That Drives Results",
@@ -28,18 +28,15 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        {/* ✅ SSR CURTAIN (blocks first paint) */}
-        <div
-          id="ssr-curtain"
-          className="fixed inset-0 z-[9998] bg-slate-900"
-        />
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+      >
+        {/* ✅ Client-only to prevent hydration mismatch */}
+        <ClientOnlyLoader />
 
-        <ClientOnlyLoader>
-          <Header />
-          {children}
-          <Footer />
-        </ClientOnlyLoader>
+        <Header />
+        {children}
+        <Footer />
       </body>
     </html>
   );

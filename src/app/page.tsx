@@ -15,6 +15,7 @@ export default function Home() {
       <Hero />
       <JourneyTimeline/>
       <Projects />
+      <Testimonials />
       <CTA />
       <Brands />
     </main>
