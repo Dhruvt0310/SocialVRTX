@@ -32,7 +32,7 @@ export default function RootLayout({
         {/* ✅ SSR CURTAIN (blocks first paint) */}
         <div
           id="ssr-curtain"
-          className="fixed inset-0 z-[9998] bg-slate-900"
+          className="fixed inset-0 z-[9997] bg-slate-900"
         />
 
         <ClientOnlyLoader>

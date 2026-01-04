@@ -13,6 +13,7 @@ export default function ClientOnlyLoader({
   children: React.ReactNode;
 }) {
   const [showLoader, setShowLoader] = useState(true);
+  const [showContent, setShowContent] = useState(false);
 
   useEffect(() => {
     // ✅ Remove SSR curtain as soon as JS runs
@@ -23,12 +24,20 @@ export default function ClientOnlyLoader({
 
     if (hasLoaded) {
       setShowLoader(false);
+      setShowContent(true);
       return;
     }
+
+    // Hide content initially and show loader
+    setShowContent(false);
 
     const t = setTimeout(() => {
       sessionStorage.setItem("siteLoaded", "true");
       setShowLoader(false);
+      // Delay showing content slightly to ensure smooth transition
+      setTimeout(() => {
+        setShowContent(true);
+      }, 100);
     }, 2600);
 
     return () => clearTimeout(t);
@@ -36,8 +45,12 @@ export default function ClientOnlyLoader({
 
   return (
     <>
-      {/* App is already mounted behind */}
-      {children}
+      {/* Content is conditionally rendered - completely hidden during loading */}
+      {showContent && (
+        <div className="animate-fadeIn">
+          {children}
+        </div>
+      )}
 
       {/* Loader is a visual overlay */}
       {showLoader && <Loader />}

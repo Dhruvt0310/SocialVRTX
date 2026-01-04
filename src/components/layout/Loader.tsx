@@ -44,7 +44,7 @@ export default function Loader() {
 
   return (
     <motion.div
-      className="bulb fixed inset-0 z-999 bg-slate-900 overflow-hidden"
+      className="bulb fixed inset-0 z-[9999] bg-slate-900 overflow-hidden"
       initial={{ y: 0, opacity: 1 }}
       animate={
         isRollingUp
