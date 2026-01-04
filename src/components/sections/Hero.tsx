@@ -93,7 +93,7 @@ export default function Hero() {
             </div>
 
             {/* RIGHT STAT 2 */}
-            <div className="flex-1 bg-[#FFC107] flex flex-col justify-center text-right pr-4 relative min-h-[200px] rounded-br-2xl rounded-tr-2xl lg:rounded-br-2xl lg:rounded-tl-2xl">
+            <div className="flex-1 bg-[#FFC107] flex flex-col justify-center text-right pr-4 relative min-h-[200px] rounded-br-2xl lg:rounded-br-2xl lg:rounded-tl-2xl">
               <div className="absolute top-4 right-4 border border-black text-black text-[10px] px-3 py-1 rounded-md">RETENTION</div>
               <div className="text-3xl lg:text-4xl font-bold pt-6 text-black">98%</div>
               <div className="text-sm text-black">Client Retention Rate</div>
