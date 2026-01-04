@@ -3,22 +3,18 @@
 import { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 
-const Loader = dynamic(() => import("./Loader"), {
-  ssr: false,
-});
+const Loader = dynamic(() => import("./Loader"), { ssr: false });
 
-export default function ClientOnlyLoader({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function ClientOnlyLoader() {
   const [showLoader, setShowLoader] = useState(true);
   const [showContent, setShowContent] = useState(false);
 
   useEffect(() => {
-    // ✅ Remove SSR curtain as soon as JS runs
     const curtain = document.getElementById("ssr-curtain");
-    if (curtain) curtain.remove();
+    if (curtain) {
+      curtain.style.opacity = "0";
+      curtain.style.pointerEvents = "none";
+    }
 
     const hasLoaded = sessionStorage.getItem("siteLoaded");
 
@@ -52,8 +48,5 @@ export default function ClientOnlyLoader({
         </div>
       )}
 
-      {/* Loader is a visual overlay */}
-      {showLoader && <Loader />}
-    </>
-  );
+  return <Loader />;
 }
