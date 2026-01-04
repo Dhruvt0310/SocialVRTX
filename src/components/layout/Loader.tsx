@@ -7,54 +7,36 @@ import Image from "next/image";
 
 export default function Loader() {
   const [isRollingUp, setIsRollingUp] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
-  const [hasLoaded, setHasLoaded] = useState(false);
 
   useEffect(() => {
+    // Hide navbar and prevent scrolling
     const navbar = document.querySelector("nav");
     if (navbar) navbar.style.display = "none";
-
     document.body.style.overflow = "hidden";
 
-    const hasLoadedBefore = sessionStorage.getItem("siteLoaded");
-
-    if (hasLoadedBefore) {
-      setIsLoading(false);
-      setHasLoaded(true);
-      document.body.style.overflow = "auto";
-      if (navbar) navbar.style.display = "flex";
-      return;
-    }
-
+    // Start roll-up animation after 2 seconds
     const rollTimer = setTimeout(() => {
       setIsRollingUp(true);
-      setTimeout(() => {
-        setIsLoading(false);
-        sessionStorage.setItem("siteLoaded", "true");
-        document.body.style.overflow = "auto";
-        if (navbar) navbar.style.display = "flex";
-        setHasLoaded(true);
-      }, 600);
     }, 2000);
 
-    return () => clearTimeout(rollTimer);
+    // Cleanup function
+    return () => {
+      clearTimeout(rollTimer);
+      // Restore navbar and scrolling when component unmounts
+      document.body.style.overflow = "auto";
+      if (navbar) navbar.style.display = "flex";
+    };
   }, []);
-
-  if (hasLoaded) return null;
 
   return (
     <motion.div
-      className="bulb fixed inset-0 z-[9999] bg-slate-900 overflow-hidden"
-      initial={{ y: 0, opacity: 1 }}
-      animate={
-        isRollingUp
-          ? {
-              y: "-100%",
-              opacity: 0,
-              transition: { duration: 1.2, ease: "easeInOut" },
-            }
-          : { y: 0, opacity: 1 }
-      }
+      className="fixed inset-0 z-50 bg-slate-900 overflow-hidden"
+      initial={{ y: 0 }}
+      animate={isRollingUp ? { y: "-100%" } : { y: 0 }}
+      transition={{ 
+        duration: 1.2, 
+        ease: [0.4, 0.0, 0.2, 1] // Custom easing for smoother animation
+      }}
     >
       <div className="relative">
         <Bulb

@@ -29,18 +29,20 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        {/* SSR curtain */}
+        {/* SSR curtain - blocks everything initially */}
         <div
           id="ssr-curtain"
-          className="fixed inset-0 z-[9997] bg-slate-900 transition-opacity duration-300"
-          style={{ opacity: 1 }}
+          className="fixed inset-0 z-50 bg-slate-900"
         />
 
-        <Header />
-        {children}
-        <Footer />
+        {/* Main content wrapper */}
+        <div id="main-content" className="opacity-0 transition-opacity duration-700 ease-out">
+          <Header />
+          {children}
+          <Footer />
+        </div>
 
-        {/* Loader as overlay ONLY */}
+        {/* Loader controls everything */}
         <ClientOnlyLoader />
       </body>
     </html>

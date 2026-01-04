@@ -24,18 +24,9 @@ body {
   font-family: var(--font-inter), sans-serif;
 }
 
-/* Fade in animation for content after loader */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+/* Smooth content transitions */
+#main-content {
+  transition: opacity 0.7s ease-out;
 }
 
-.animate-fadeIn {
-  animation: fadeIn 0.8s ease-out forwards;
-}
+/* Remove the complex CSS selector that was causing issues */

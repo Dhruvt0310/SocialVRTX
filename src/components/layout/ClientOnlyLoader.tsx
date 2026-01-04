@@ -6,32 +6,44 @@ import dynamic from "next/dynamic";
 const Loader = dynamic(() => import("./Loader"), { ssr: false });
 
 export default function ClientOnlyLoader() {
-  const [showLoader, setShowLoader] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // Fade out SSR curtain safely
+    // Remove SSR curtain smoothly
     const curtain = document.getElementById("ssr-curtain");
     if (curtain) {
+      curtain.style.transition = "opacity 0.3s ease-out";
       curtain.style.opacity = "0";
-      curtain.style.pointerEvents = "none";
+      setTimeout(() => curtain.remove(), 300);
     }
 
+    const mainContent = document.getElementById("main-content");
     const hasLoaded = sessionStorage.getItem("siteLoaded");
 
     if (hasLoaded) {
-      setShowLoader(false);
+      // Skip loader, show content immediately
+      setIsLoading(false);
+      if (mainContent) {
+        mainContent.style.opacity = "1";
+      }
       return;
     }
 
-    const t = setTimeout(() => {
+    // Start the loading sequence
+    const loadingTimer = setTimeout(() => {
       sessionStorage.setItem("siteLoaded", "true");
-      setShowLoader(false);
-    }, 2600);
+      setIsLoading(false);
+      
+      // Show content smoothly after loader animation
+      if (mainContent) {
+        mainContent.style.opacity = "1";
+      }
+    }, 3800); // Total time: 2s wait + 1.2s roll-up + 0.6s buffer
 
-    return () => clearTimeout(t);
+    return () => clearTimeout(loadingTimer);
   }, []);
 
-  if (!showLoader) return null;
+  if (!isLoading) return null;
 
   return <Loader />;
 }
