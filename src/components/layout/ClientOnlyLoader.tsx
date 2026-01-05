@@ -9,19 +9,19 @@ export default function ClientOnlyLoader() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // Remove SSR curtain smoothly
     const curtain = document.getElementById("ssr-curtain");
+    const mainContent = document.getElementById("main-content");
+
+    // Fade out SSR curtain (DO NOT REMOVE)
     if (curtain) {
       curtain.style.transition = "opacity 0.3s ease-out";
       curtain.style.opacity = "0";
-      setTimeout(() => curtain.remove(), 300);
+      curtain.style.pointerEvents = "none";
     }
 
-    const mainContent = document.getElementById("main-content");
     const hasLoaded = sessionStorage.getItem("siteLoaded");
 
     if (hasLoaded) {
-      // Skip loader, show content immediately
       setIsLoading(false);
       if (mainContent) {
         mainContent.style.opacity = "1";
@@ -29,16 +29,14 @@ export default function ClientOnlyLoader() {
       return;
     }
 
-    // Start the loading sequence
     const loadingTimer = setTimeout(() => {
       sessionStorage.setItem("siteLoaded", "true");
       setIsLoading(false);
-      
-      // Show content smoothly after loader animation
+
       if (mainContent) {
         mainContent.style.opacity = "1";
       }
-    }, 3800); // Total time: 2s wait + 1.2s roll-up + 0.6s buffer
+    }, 3800);
 
     return () => clearTimeout(loadingTimer);
   }, []);

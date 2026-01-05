@@ -18,7 +18,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Social Vortex - Digital Marketing That Drives Results",
   description:
-    "Transform your business with Social Vortex's cutting-edge marketing solutions. We help brands grow through data-driven strategies and exceptional digital experiences.",
+    "Transform your business with Social Vortex's cutting-edge marketing solutions.",
 };
 
 export default function RootLayout({
@@ -29,24 +29,25 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        {/* SSR curtain - blocks everything initially */}
+        {/* Client-only logic lives here */}
+        <ClientOnlyLoader />
+
+        {/* SSR curtain – NEVER removed from DOM */}
         <div
           id="ssr-curtain"
-          className="fixed inset-0 z-50 bg-slate-900"
+          className="fixed inset-0 z-50 bg-slate-900 pointer-events-none"
         />
 
-        {/* Main content wrapper */}
-        <div id="main-content" className="opacity-0 transition-opacity duration-700 ease-out">
+        {/* Main content */}
+        <div
+          id="main-content"
+          className="opacity-0 transition-opacity duration-700 ease-out"
+        >
           <Header />
           {children}
           <Footer />
         </div>
-
-        {/* Loader controls everything */}
-        <ClientOnlyLoader />
       </body>
     </html>
   );
 }
-
-
