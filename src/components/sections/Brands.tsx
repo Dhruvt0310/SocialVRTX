@@ -129,7 +129,7 @@ export default function Brands() {
             </p>
             <div className="flex gap-4 items-center">
               <Link 
-                href="/brands"
+                href="/work"
                 className="inline-block px-10 py-5 bg-white text-black font-bold rounded-full shadow-[0_10px_40px_rgba(0,0,0,0.2)]"
               >
                 See More Brands →

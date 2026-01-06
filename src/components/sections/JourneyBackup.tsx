@@ -45,7 +45,7 @@ export default function JourneyTimeline() {
   const [progress, setProgress] = useState(0);
   const [activeIndex, setActiveIndex] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
-  const milestoneRefs = useRef([]);
+  const milestoneRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   useEffect(() => {
     const handleScroll = () => {

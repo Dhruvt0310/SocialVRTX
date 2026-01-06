@@ -14,7 +14,7 @@ export default function Loader() {
 
     const rollTimer = setTimeout(() => {
       setIsRollingUp(true);
-    }, 2000);
+    }, 3000);
 
     return () => {
       clearTimeout(rollTimer);
@@ -49,7 +49,7 @@ export default function Loader() {
       </div>
 
       {/* C I A L */}
-      <div className="absolute left-[40%] top-[27%] flex -space-x-20 pointer-events-none select-none">
+      <div className="absolute left-[40%] top-[27%] flex -space-x-25 pointer-events-none select-none">
         <Image src="/SV/C.svg" alt="C" width={180} height={180} draggable={false} />
         <Image src="/SV/I.svg" alt="I" width={180} height={180} draggable={false} />
         <Image src="/SV/A.svg" alt="A" width={180} height={180} draggable={false} />
@@ -57,7 +57,7 @@ export default function Loader() {
       </div>
 
       {/* V R T X */}
-      <div className="absolute left-[35%] top-[55%] flex -space-x-20 pointer-events-none select-none">
+      <div className="absolute left-[35%] top-[55%] flex -space-x-25 pointer-events-none select-none">
         <Image src="/SV/V.svg" alt="V" width={180} height={180} draggable={false} />
         <Image src="/SV/R.svg" alt="R" width={180} height={180} draggable={false} />
         <Image src="/SV/T.svg" alt="T" width={180} height={180} draggable={false} />

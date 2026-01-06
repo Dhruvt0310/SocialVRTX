@@ -64,7 +64,7 @@ export const Compare = ({
 
   useEffect(() => {
     startAutoplay();
-    return () => stopAutoplay();
+    return stopAutoplay;
   }, [startAutoplay, stopAutoplay]);
 
   function mouseEnterHandler() {
