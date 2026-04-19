@@ -23,6 +23,7 @@ export default function ContactPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7 }}
               className="text-center"
+
             >
               <h1 className="text-5xl md:text-7xl font-black tracking-tight uppercase">
                 <span className="bg-clip-text text-transparent bg-linear-to-r from-yellow-700 via-amber-600 to-yellow-600">

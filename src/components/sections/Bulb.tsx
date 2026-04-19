@@ -12,7 +12,8 @@ export default function Bulb({
   cordScale = 1,
   cordOffsetX = 0,
   cordOffsetY = 0,
-
+  cordRadius = 20,
+  
   // bulb controls
   bulbScale = 1,
   bulbOffsetX = 0,
@@ -134,7 +135,7 @@ export default function Bulb({
           <motion.line
             x1="150"
             x2="150"
-            y1="-200"
+            y1="-400"
             y2="260"
             stroke={isOn ? "#19461dff" : "#475569"}
             strokeWidth="6"
@@ -144,7 +145,7 @@ export default function Bulb({
           <motion.circle
             cx="150"
             cy="260"
-            r="20"
+            r={cordRadius}
             fill={isOn ? "#19461dff" : "#4b5563"}
             style={{ y }}
           />

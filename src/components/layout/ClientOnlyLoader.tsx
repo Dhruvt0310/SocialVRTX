@@ -4,9 +4,11 @@ import { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 
 const Loader = dynamic(() => import("./Loader"), { ssr: false });
+const Loader1 = dynamic(() => import("./Loader1"), { ssr: false });
 
 export default function ClientOnlyLoader() {
   const [isLoading, setIsLoading] = useState(true);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     const curtain = document.getElementById("ssr-curtain");
@@ -41,7 +43,16 @@ export default function ClientOnlyLoader() {
     return () => clearTimeout(loadingTimer);
   }, []);
 
+  useEffect(() => {
+    const checkScreenSize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    checkScreenSize();
+    window.addEventListener("resize", checkScreenSize);
+    return () => window.removeEventListener("resize", checkScreenSize);
+  }, []);
+
   if (!isLoading) return null;
 
-  return <Loader />;
+  return isMobile ? <Loader1 /> : <Loader />;
 }
