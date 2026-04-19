@@ -50,7 +50,7 @@ export default function Loader1() {
       </div>
 
       {/* C I A L */}
-      <div className="absolute left-[32%] top-[30%] flex -space-x-15 pointer-events-none select-none">
+      <div className="absolute left-[32%] top-[29.5%] flex -space-x-15 pointer-events-none select-none">
         <Image src="/SV/C.svg" alt="C" width={110} height={110} draggable={false} />
         <Image src="/SV/I.svg" alt="I" width={110} height={110} draggable={false} />
         <Image src="/SV/A.svg" alt="A" width={110} height={110} draggable={false} />
