@@ -53,32 +53,34 @@ export default function Header() {
           <div className="flex items-center gap-4 md:gap-7">
             <Link
               href="/contact"
-              className="group hidden items-center gap-3 rounded-2xl border border-white/40 bg-white/3 px-4 py-3 text-sm font-medium text-white/95 backdrop-blur-sm transition-all duration-300 hover:border-yellow-400/60 hover:bg-yellow-400/10 hover:text-yellow-300 md:inline-flex"
+              className="group relative hidden items-center gap-3 overflow-hidden rounded-2xl border border-white/40 bg-transparent px-4 py-3 text-sm font-medium text-white/95 backdrop-blur-sm transition-colors duration-300 md:inline-flex"
               aria-label="Open contact"
             >
-              <span>Got any questions?</span>
-              <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              <span className="absolute inset-0 origin-left scale-x-0 bg-yellow-400 transition-transform duration-300 ease-out group-hover:scale-x-100" />
+              <span className="relative z-10 transition-colors duration-300 group-hover:text-black">Got any questions?</span>
+              <ArrowUpRight className="relative z-10 h-4 w-4 transition-all duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-black" />
             </Link>
 
             <button
               type="button"
-              className="group relative inline-flex h-12 w-12 items-center justify-center rounded-2xl border border-white/30 bg-white/3 backdrop-blur-sm transition-all duration-300 hover:border-yellow-400/60 hover:bg-yellow-400/10"
+              className="group relative inline-flex h-12 w-12 items-center justify-center overflow-hidden rounded-2xl border border-white/30 bg-transparent backdrop-blur-sm transition-colors duration-300"
               onClick={() => setIsMenuOpen((prev) => !prev)}
               aria-expanded={isMenuOpen}
               aria-label={isMenuOpen ? "Close menu" : "Open menu"}
             >
+              <span className="absolute inset-0 origin-left scale-x-0 bg-yellow-400 transition-transform duration-300 ease-out group-hover:scale-x-100" />
               <span
-                className={`absolute h-px w-5 bg-white transition-all duration-300 ${
+                className={`absolute z-10 h-px w-5 bg-white transition-all duration-300 group-hover:bg-black ${
                   isMenuOpen ? "rotate-45" : "-translate-y-1.5"
                 }`}
               />
               <span
-                className={`absolute h-px w-5 bg-white transition-all duration-300 ${
+                className={`absolute z-10 h-px w-5 bg-white transition-all duration-300 group-hover:bg-black ${
                   isMenuOpen ? "opacity-0" : "opacity-100"
                 }`}
               />
               <span
-                className={`absolute h-px w-5 bg-white transition-all duration-300 ${
+                className={`absolute z-10 h-px w-5 bg-white transition-all duration-300 group-hover:bg-black ${
                   isMenuOpen ? "-rotate-45" : "translate-y-1.5"
                 }`}
               />
