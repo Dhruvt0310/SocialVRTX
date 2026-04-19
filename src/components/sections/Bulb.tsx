@@ -145,7 +145,7 @@ export default function Bulb({
           <motion.circle
             cx="150"
             cy="260"
-            r={cordRadius}
+            r="20"
             fill={isOn ? "#19461dff" : "#4b5563"}
             style={{ y }}
           />
