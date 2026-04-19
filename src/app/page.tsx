@@ -1,10 +1,10 @@
 import Hero from "@/components/sections/Hero"
+import AboutFeature from "@/components/sections/AboutFeature"
 import Services from "@/components/sections/Services"
 import WorkProcess from "@/components/sections/WorkProcess"
 import ClientLogos from "@/components/sections/ClientLogos"
 import Projects from "@/components/sections/Projects"
 import Testimonials from "@/components/sections/Testimonials"
-import JourneyTimeline from "@/components/sections/JourneyTimeline"
 import Brands from "@/components/sections/Brands"
 
 export default function Home() {
@@ -12,7 +12,7 @@ export default function Home() {
     <main>
       
       <Hero />
-      <JourneyTimeline/>
+      <AboutFeature />
       <Projects />
       <Testimonials />
     

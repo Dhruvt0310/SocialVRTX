@@ -1,91 +1,155 @@
 "use client";
+
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
-import { Menu, X } from "lucide-react";
-import { AceternityButton } from "@/components/ui/aceternity-button";
+import { useEffect, useState } from "react";
+import { ArrowUpRight } from "lucide-react";
+import { usePathname } from "next/navigation";
 
 export default function Header() {
+  const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  useEffect(() => {
+    setIsMenuOpen(false);
+  }, [pathname]);
+
+  useEffect(() => {
+    if (!isMenuOpen) {
+      document.body.style.overflow = "";
+      return;
+    }
+
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isMenuOpen]);
 
   const navigation = [
     { name: "Home", href: "/" },
     { name: "About", href: "/about" },
-    { name: "Work", href: "/work" },
+    { name: "Projects", href: "/work" },
     { name: "Contact", href: "/contact" },
   ];
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-white border-b border-neutral-200">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center py-2">
-          
-          {/* Logo */}
-<Link href="/" className="flex items-center space-x-2">
-  <Image
-    src="/SVLogo.png"
-    alt="SocialVRTX Logo"
-    width={100}
-    height={100}
-    className="object-contain"
-    priority
-  />
+    <>
+      <header className="fixed inset-x-0 top-0 z-60 text-white">
+        <div className="mx-auto flex h-24 max-w-[1600px] items-center justify-between px-6 md:px-10">
+          <Link href="/" className="group inline-flex items-center gap-3" aria-label="SocialVRTX home">
+            <span className="grid h-24 w-24 place-items-center rounded-2xl   transition-all duration-300 group-hover:border-yellow-400/60 group-hover:bg-yellow-400/10">
+              <Image
+                src="/SVLogoNoBg.png"
+                alt="SocialVRTX mark"
+                width={500}
+                height={500}
+                className="h-auto w-auto"
+                priority
+              />
+            </span>
+          </Link>
 
-</Link> 
-          {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-8">
-            {navigation.map((item) => (
-              <Link
-                key={item.name}
-                href={item.href}
-                className="text-black hover:text-neutral-600 transition-colors duration-200"
-              >
-                {item.name}
-              </Link>
-            ))}
-
-            <AceternityButton
-              size="sm"
-              className="bg-orange-500 hover:bg-orange-600 text-white"
+          <div className="flex items-center gap-4 md:gap-7">
+            <Link
+              href="/contact"
+              className="group hidden items-center gap-3 rounded-2xl border border-white/40 bg-white/3 px-4 py-3 text-sm font-medium text-white/95 backdrop-blur-sm transition-all duration-300 hover:border-yellow-400/60 hover:bg-yellow-400/10 hover:text-yellow-300 md:inline-flex"
+              aria-label="Open contact"
             >
-              Get Started
-            </AceternityButton>
+              <span>Got any questions?</span>
+              <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+            </Link>
+
+            <button
+              type="button"
+              className="group relative inline-flex h-12 w-12 items-center justify-center rounded-2xl border border-white/30 bg-white/3 backdrop-blur-sm transition-all duration-300 hover:border-yellow-400/60 hover:bg-yellow-400/10"
+              onClick={() => setIsMenuOpen((prev) => !prev)}
+              aria-expanded={isMenuOpen}
+              aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+            >
+              <span
+                className={`absolute h-px w-5 bg-white transition-all duration-300 ${
+                  isMenuOpen ? "rotate-45" : "-translate-y-1.5"
+                }`}
+              />
+              <span
+                className={`absolute h-px w-5 bg-white transition-all duration-300 ${
+                  isMenuOpen ? "opacity-0" : "opacity-100"
+                }`}
+              />
+              <span
+                className={`absolute h-px w-5 bg-white transition-all duration-300 ${
+                  isMenuOpen ? "-rotate-45" : "translate-y-1.5"
+                }`}
+              />
+            </button>
+          </div>
+        </div>
+      </header>
+
+      <div
+        className={`fixed inset-0 z-50 bg-[#02081d]/95 text-white backdrop-blur-md transition-all duration-500 ${
+          isMenuOpen
+            ? "pointer-events-auto translate-y-0 opacity-100"
+            : "pointer-events-none -translate-y-4 opacity-0"
+        }`}
+      >
+        <div className="mx-auto grid h-full max-w-[1600px] grid-rows-[1fr_auto] px-6 pb-8 pt-28 md:px-10 md:pb-10">
+          <nav className="flex items-center justify-center">
+            <ul className="space-y-2 text-center uppercase leading-none tracking-tight md:space-y-4">
+              {navigation.map((item, index) => (
+                <li
+                  key={item.name}
+                  className="transition-all duration-500"
+                  style={{
+                    transitionDelay: isMenuOpen ? `${index * 60 + 90}ms` : "0ms",
+                    opacity: isMenuOpen ? 1 : 0,
+                    transform: isMenuOpen ? "translateY(0)" : "translateY(16px)",
+                  }}
+                >
+                  <Link
+                    href={item.href}
+                    className="text-5xl font-semibold text-white/90 transition-colors duration-300 hover:text-yellow-300 md:text-7xl"
+                  >
+                    {item.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
           </nav>
 
-          {/* Mobile menu button */}
-          <button
-            className="md:hidden text-black"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-          >
-            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
-        </div>
+          <div className="flex flex-wrap items-end justify-between gap-6 text-sm text-white/80">
+            <a
+              href="mailto:hi@socialvrtx.com"
+              className="group inline-flex items-center gap-2 transition-colors duration-300 hover:text-white"
+            >
+              <span>hi@socialvrtx.com</span>
+              <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+            </a>
 
-        {/* Mobile Navigation */}
-        {isMenuOpen && (
-          <div className="md:hidden py-4 border-t border-neutral-200 bg-white">
-            <nav className="flex flex-col space-y-4">
-              {navigation.map((item) => (
-                <Link
-                  key={item.name}
-                  href={item.href}
-                  className="text-black hover:text-neutral-600 transition-colors duration-200"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  {item.name}
-                </Link>
-              ))}
-
-              <AceternityButton
-                size="sm"
-                className="bg-orange-500 hover:bg-orange-600 text-white w-fit"
+            <div className="flex items-center gap-7">
+              <a
+                href="https://www.instagram.com"
+                target="_blank"
+                rel="noreferrer"
+                className="group inline-flex items-center gap-2 transition-colors duration-300 hover:text-white"
               >
-                Get Started
-              </AceternityButton>
-            </nav>
+                <span>Instagram</span>
+                <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              </a>
+              <a
+                href="https://www.linkedin.com"
+                target="_blank"
+                rel="noreferrer"
+                className="group inline-flex items-center gap-2 transition-colors duration-300 hover:text-white"
+              >
+                <span>LinkedIn</span>
+                <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              </a>
+            </div>
           </div>
-        )}
+        </div>
       </div>
-    </header>
+    </>
   );
 }
