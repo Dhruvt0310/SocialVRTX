@@ -1,165 +1,99 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
-import { Mail, Phone, MapPin, Twitter, Linkedin, Instagram, Facebook } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 
 export default function Footer() {
-  const navigation = {
-    company: [
-      { name: "About", href: "/about" },
-      { name: "Work", href: "/work" },
-      { name: "Contact", href: "/contact" },
-      { name: "Careers", href: "#" },
-    ],
-    services: [
-      { name: "Brand Strategy", href: "#" },
-      { name: "Web Development", href: "#" },
-      { name: "Digital Marketing", href: "#" },
-      { name: "UI/UX Design", href: "#" },
-    ],
-    resources: [
-      { name: "Blog", href: "#" },
-      { name: "Case Studies", href: "#" },
-      { name: "Portfolio", href: "#" },
-      { name: "Insights", href: "#" },
-    ],
-    legal: [
-      { name: "Privacy Policy", href: "#" },
-      { name: "Terms of Service", href: "#" },
-      { name: "Cookie Policy", href: "#" },
-    ],
-  };
+  const navigation = [
+    { name: "Home", href: "/" },
+    { name: "Our Team", href: "/about" },
+    { name: "Our Work", href: "/work" },
+    { name: "Get In Touch", href: "/contact" },
+  ];
 
-  const socialLinks = [
-    { name: "Twitter", icon: Twitter, href: "#" },
-    { name: "LinkedIn", icon: Linkedin, href: "#" },
-    { name: "Instagram", icon: Instagram, href: "#" },
-    { name: "Facebook", icon: Facebook, href: "#" },
+  const socials = [
+    { name: "Instagram", href: "https://www.instagram.com/socialvrtxmarketing/" },
+    { name: "LinkedIn", href: "https://www.linkedin.com/company/social-vrtx/" },
   ];
 
   return (
-    <footer className="bg-black text-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-8">
-          {/* Company Info */}
-          <div className="lg:col-span-2">
-            <Link href="/" className="flex items-center space-x-2 mb-4">
-              <div className="w-8 h-8 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-lg">S</span>
-              </div>
-              <span className="text-white font-bold text-xl">SocialVRTX</span>
-            </Link>
-            <p className="text-neutral-400 mb-6 max-w-md">
-              SocialVRTX creates data-driven marketing strategies that help businesses grow and connect with their audiences through innovative digital solutions.
-            </p>
-            <div className="space-y-2">
-              <div className="flex items-center space-x-2 text-neutral-400">
-                <Mail size={16} />
-                <span>hello@socialvrtx.com</span>
-              </div>
-              <div className="flex items-center space-x-2 text-neutral-400">
-                <Phone size={16} />
-                <span>+1 (555) 123-4567</span>
-              </div>
-              <div className="flex items-center space-x-2 text-neutral-400">
-                <MapPin size={16} />
-                <span>123 Creative Street, Design City</span>
-              </div>
-            </div>
-          </div>
+    <footer className="relative z-70 min-h-screen overflow-hidden text-white">
+      {/* Video Background */}
+      <video
+        autoPlay
+        muted
+        loop
+        playsInline
+        className="absolute inset-0 h-full w-full object-cover z-0"
+      >
+        <source src="/FooterBG.mp4" type="video/mp4" />
+      </video>
 
-          {/* Company Links */}
-          <div>
-            <h3 className="text-white font-semibold mb-4">Company</h3>
-            <ul className="space-y-2">
-              {navigation.company.map((item) => (
-                <li key={item.name}>
-                  <Link
-                    href={item.href}
-                    className="text-neutral-400 hover:text-white transition-colors duration-200"
-                  >
-                    {item.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
+      {/* Overlay */}
+      <div className="absolute inset-0 z-0 bg-linear-to-b from-black/40 via-black/60 to-black/80" />
 
-          {/* Services Links */}
-          <div>
-            <h3 className="text-white font-semibold mb-4">Services</h3>
-            <ul className="space-y-2">
-              {navigation.services.map((item) => (
-                <li key={item.name}>
-                  <Link
-                    href={item.href}
-                    className="text-neutral-400 hover:text-white transition-colors duration-200"
-                  >
-                    {item.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
+      {/* Content */}
+      <div className="relative z-20 mx-auto flex h-full w-full max-w-[1600px] flex-col px-6 py-16 md:px-10 md:py-20">
+        {/* Top Section - Logo and Socials */}
+        <div className="flex items-center justify-between mb-32 md:mb-40">
+          <Link href="/" className="group inline-flex items-center gap-3" aria-label="SocialVRTX home">
+            <span className="grid h-60 w-60 place-items-center rounded-lg">
+              <Image
+                src="/SVLogoNoBg.png"
+                alt="SocialVRTX mark"
+                width={96}
+                height={96}
+                className="h-auto w-auto"
+              />
+            </span>
+          </Link>
 
-          {/* Resources Links */}
-          <div>
-            <h3 className="text-white font-semibold mb-4">Resources</h3>
-            <ul className="space-y-2">
-              {navigation.resources.map((item) => (
-                <li key={item.name}>
-                  <Link
-                    href={item.href}
-                    className="text-neutral-400 hover:text-white transition-colors duration-200"
-                  >
-                    {item.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Legal Links */}
-          <div>
-            <h3 className="text-white font-semibold mb-4">Legal</h3>
-            <ul className="space-y-2">
-              {navigation.legal.map((item) => (
-                <li key={item.name}>
-                  <Link
-                    href={item.href}
-                    className="text-neutral-400 hover:text-white transition-colors duration-200"
-                  >
-                    {item.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
+          {/* Social Links - Top Right */}
+          <div className="flex items-center gap-12 md:gap-16">
+            {socials.map((item) => (
+              <a
+                key={item.name}
+                href={item.href}
+                target="_blank"
+                rel="noreferrer"
+                className="text-xs font-medium uppercase text-white/85 transition-colors duration-300 hover:text-white md:text-sm"
+              >
+                {item.name}
+              </a>
+            ))}
           </div>
         </div>
 
-        {/* Bottom Section */}
-        <div className="border-t border-neutral-800 mt-12 pt-8">
-          <div className="flex flex-col md:flex-row justify-between items-center">
-            <p className="text-neutral-400 text-sm">
-              © 2024 SocialVRTX. All rights reserved.
-            </p>
-            
-            {/* Social Links */}
-            <div className="flex space-x-4 mt-4 md:mt-0">
-              {socialLinks.map((item) => {
-                const Icon = item.icon;
-                return (
+        {/* Middle Section - Navigation (centered) */}
+        <div className="mb-auto flex justify-center">
+          <nav className="text-center">
+            <ul className="space-y-6">
+              {navigation.map((item) => (
+                <li key={item.name}>
                   <Link
-                    key={item.name}
                     href={item.href}
-                    className="text-neutral-400 hover:text-white transition-colors duration-200"
+                    className="text-3xl font-semibold uppercase text-white/95 transition-colors duration-300 hover:text-yellow-300 md:text-4xl"
                   >
-                    <Icon size={20} />
+                    {item.name}
                   </Link>
-                );
-              })}
-            </div>
-          </div>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        </div>
+
+        {/* Bottom Section - Email and Address (left-aligned) */}
+        <div className="space-y-3">
+          <a
+            href="mailto:admin@socialvrtx.com"
+            className="group block text-xl font-semibold uppercase text-white transition-colors duration-300 hover:text-white/80 md:text-2xl"
+          >
+            admin@socialvrtx.com
+          </a>
+          <p className="text-xs uppercase text-white/60 md:text-sm">
+            C-4, Nemi Krishna, Jethwa Nagar,<br />Kandivali West, Mumbai
+          </p>
         </div>
       </div>
     </footer>

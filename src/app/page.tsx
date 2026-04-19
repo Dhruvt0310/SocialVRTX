@@ -1,4 +1,5 @@
 import Hero1 from "@/components/sections/Hero1"
+import AboutFeature from "@/components/sections/AboutFeature"
 import Services from "@/components/sections/Services"
 import WorkProcess from "@/components/sections/WorkProcess"
 import ClientLogos from "@/components/sections/ClientLogos"
@@ -11,6 +12,7 @@ export default function Home() {
     <main>
       
       <Hero1 />
+      <AboutFeature />
       <Projects />
       <Testimonials />
     
