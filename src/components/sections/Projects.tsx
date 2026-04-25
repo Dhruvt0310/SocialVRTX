@@ -3,62 +3,47 @@ import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { Spotlight } from "@/components/ui/spotlight";
 
-
-const projectsData = [
+const servicesData = [
     {
         id: 1,
-        title: "E-Commerce Revolution",
-        description: "A modern e-commerce platform with seamless checkout and inventory management.",
-        category: "Web Development",
+        title: "Social Media Marketing",
+        description: "Strategic campaigns that amplify your brand voice across all platforms with data-driven insights and creative content.",
+        category: "Marketing",
         image: "/img.png",
     },
     {
         id: 2,
-        title: "FinTech Dashboard",
-        description: "Real-time financial analytics dashboard with advanced data visualization.",
-        category: "SaaS",
+        title: "Content Creation",
+        description: "Compelling visual and written content that captures attention and drives engagement with your target audience.",
+        category: "Creative",
         image: "/img.png",
     },
     {
         id: 3,
-        title: "Healthcare Portal",
-        description: "Patient management system with telemedicine capabilities and secure data handling.",
-        category: "Healthcare",
+        title: "Brand Strategy",
+        description: "Comprehensive brand development from positioning to visual identity that sets you apart in the market.",
+        category: "Strategy",
         image: "/img.png",
     },
     {
         id: 4,
-        title: "AI Content Generator",
-        description: "Intelligent content creation tool powered by machine learning algorithms.",
-        category: "AI/ML",
+        title: "Digital Advertising",
+        description: "Performance-driven ad campaigns across Google, Meta, and LinkedIn that maximize ROI and conversions.",
+        category: "Advertising",
         image: "/img.png",
     },
     {
         id: 5,
-        title: "Social Media Hub",
-        description: "Unified platform for managing multiple social media accounts and analytics.",
+        title: "Influencer Marketing",
+        description: "Strategic partnerships with influencers who authentically connect your brand with engaged communities.",
         category: "Marketing",
         image: "/img.png",
     },
     {
         id: 6,
-        title: "Smart Logistics",
-        description: "End-to-end supply chain management with real-time tracking and optimization.",
-        category: "Enterprise",
-        image: "/img.png",
-    },
-    {
-        id: 7,
-        title: "EdTech Platform",
-        description: "Interactive learning management system with gamification and progress tracking.",
-        category: "Education",
-        image: "/img.png",
-    },
-    {
-        id: 8,
-        title: "Real Estate Marketplace",
-        description: "Property listing platform with virtual tours and AI-powered recommendations.",
-        category: "PropTech",
+        title: "Analytics & Insights",
+        description: "Deep-dive analytics and reporting that transform data into actionable strategies for growth.",
+        category: "Analytics",
         image: "/img.png",
     },
 ];
@@ -71,21 +56,28 @@ export default function Projects() {
         offset: ["start start", "end end"],
     });
 
-    // Responsive card sizing - 3 cards visible with proper spacing
-    const cardWidth = 400;
+    // Card dimensions
+    const cardWidth = 420;
     const gap = 32;
-    const cardsToScroll = 5; // 8 total - 3 visible
-    const scrollDistance = cardsToScroll * (cardWidth + gap);
+    const totalCards = servicesData.length;
+    
+    // Calculate proper starting position to center first card
+    const viewportWidth = typeof window !== 'undefined' ? window.innerWidth : 1920;
+    const startOffset = (viewportWidth / 2) - (cardWidth / 2);
+    
+    // Calculate scroll distance (show all cards minus the last one that stays visible)
+    const scrollDistance = (totalCards - 1) * (cardWidth + gap);
 
-    // Immediate response with no delay - start from 0
+    // Transform with proper starting offset
+    
     const x = useTransform(
         scrollYProgress,
         [0, 1],
-        [0, -scrollDistance]
+        [startOffset, startOffset - scrollDistance]
     );
 
     return (
-        <div ref={containerRef} className="relative bg-black" style={{ height: "350vh" }}>
+        <div ref={containerRef} className="relative bg-black" style={{ height: "300vh" }}>
             <div className="sticky top-0 h-screen w-full overflow-hidden flex flex-col items-center justify-center py-20">
                 {/* Spotlight Background */}
                 <Spotlight
@@ -93,9 +85,9 @@ export default function Projects() {
                     fill="white"
                 />
 
-                <div className="relative z-10 w-full h-full flex flex-col items-center justify-center px-4 md:px-8">
+                <div className="relative z-10 w-full h-full flex flex-col items-center justify-center">
                     {/* Centered Header Section */}
-                    <div className="text-center mb-12 flex-shrink-0">
+                    <div className="text-center mb-16 flex-shrink-0 px-4">
                         <motion.div
                             initial={{ opacity: 0, y: -20 }}
                             whileInView={{ opacity: 1, y: 0 }}
@@ -103,29 +95,27 @@ export default function Projects() {
                             className="inline-block mb-4"
                         >
                             <h2 className="text-5xl md:text-7xl lg:text-8xl font-bold text-white">
-                                Our Projects
+                                Our Services
                             </h2>
                         </motion.div>
                         <motion.p
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.8, delay: 0.2 }}
-                            className="text-base md:text-lg lg:text-xl text-gray-400 max-w-3xl mx-auto px-4"
+                            className="text-base md:text-lg lg:text-xl text-gray-400 max-w-3xl mx-auto"
                         >
-                            Explore our portfolio of cutting-edge solutions that transform businesses
-                            and deliver exceptional results. Each project represents our commitment
-                            to innovation and excellence.
+                            Comprehensive digital solutions tailored to elevate your brand and drive measurable results
                         </motion.p>
                     </div>
 
-                    {/* Scrolling Cards Container - Centered with proper spacing */}
-                    <div className="w-full flex-1 flex items-center justify-center overflow-hidden">
+                    {/* Scrolling Cards Container */}
+                    <div className="w-full flex-1 flex items-center overflow-hidden">
                         <motion.div
                             style={{ x }}
-                            className="flex gap-8 items-center"
+                            className="flex gap-8 items-center will-change-transform"
                         >
-                            {projectsData.map((project, index) => (
-                                <ProjectCard key={project.id} project={project} index={index} />
+                            {servicesData.map((service, index) => (
+                                <ServiceCard key={service.id} service={service} index={index} />
                             ))}
                         </motion.div>
                     </div>
@@ -135,62 +125,72 @@ export default function Projects() {
     );
 }
 
-function ProjectCard({ project, index }: { project: typeof projectsData[0]; index: number }) {
+function ServiceCard({ service, index }: { service: typeof servicesData[0]; index: number }) {
     return (
         <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, margin: "-100px" }}
             transition={{
-                duration: 0.6,
+                duration: 0.5,
                 delay: index * 0.1,
                 ease: [0.25, 0.46, 0.45, 0.94]
             }}
-            className="flex-shrink-0 w-[340px] sm:w-[360px] md:w-[380px] lg:w-[400px] h-[450px] sm:h-[460px] md:h-[470px] bg-white/5 backdrop-blur-md rounded-2xl overflow-hidden border border-white/10 hover:border-white/30 hover:bg-white/10 transition-all duration-500 group"
+            className="flex-shrink-0 w-[500px] h-[350px] bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-md rounded-2xl overflow-hidden border border-white/20  hover:shadow-2xl  transition-all duration-500 group relative"
         >
-            {/* Image Container */}
-            <div className="relative h-[220px] sm:h-[230px] md:h-[240px] w-full overflow-hidden bg-gradient-to-br from-gray-800 to-gray-900">
+            {/* Image Container - Full card background */}
+            <div className="absolute inset-0 w-full h-full overflow-hidden">
                 <img
-                    src={project.image}
-                    alt={project.title}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
+                    src={service.image}
+                    alt={service.title}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
-
-                {/* Category Badge */}
-                <div className="absolute top-4 right-4">
-                    <span className="px-3 py-1 text-xs font-semibold bg-white text-black rounded-full shadow-lg">
-                        {project.category}
-                    </span>
-                </div>
+                {/* Dark overlay - lighter on default, darker on hover */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-black/40 group-hover:from-black group-hover:via-black/80 group-hover:to-black/60 transition-all duration-500" />
             </div>
 
-            {/* Content */}
-            <div className="p-5 sm:p-6 flex flex-col h-[230px]">
-                <h3 className="text-xl sm:text-2xl font-bold text-white mb-2 sm:mb-3 group-hover:text-gray-200 transition-colors duration-300">
-                    {project.title}
-                </h3>
-                <p className="text-gray-400 text-xs sm:text-sm leading-relaxed mb-4 sm:mb-6 flex-grow">
-                    {project.description}
-                </p>
+            {/* Content Container */}
+            <div className="relative h-full flex flex-col justify-between p-8">
+                {/* Top Section - Category */}
+                <div className="flex items-start justify-end">
+                    {/* Category Badge */}
+                    <span className="px-4 py-1.5 text-xs font-bold bg-white text-black rounded-full shadow-lg uppercase tracking-wider">
+                        {service.category}
+                    </span>
+                </div>
 
-                {/* View Project Button */}
-                <button className="w-full py-2.5 sm:py-3 px-4 sm:px-6 bg-white text-black rounded-lg font-semibold hover:bg-gray-100 active:scale-95 transition-all duration-300 flex items-center justify-center gap-2 group/btn shadow-lg text-sm sm:text-base">
-                    <span>View Project</span>
-                    <svg
-                        className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform duration-300"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                    >
-                        <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M9 5l7 7-7 7"
-                        />
-                    </svg>
-                </button>
+                {/* Bottom Section - Title and Description */}
+                <div className="space-y-4">
+                    {/* Title - Always visible */}
+                    <h3 className="text-3xl font-bold text-white group-hover:text-gray-100 transition-colors duration-300">
+                        {service.title}
+                    </h3>
+
+                    {/* Description - Hidden by default, visible on hover */}
+                    <div className="overflow-hidden transition-all duration-500 max-h-0 opacity-0 group-hover:max-h-40 group-hover:opacity-100">
+                        <p className="text-gray-300 text-base leading-relaxed mb-6">
+                            {service.description}
+                        </p>
+
+                        {/* Learn More Button - Only visible on hover */}
+                        <button className="w-full py-3.5 px-6 bg-white text-black rounded-xl font-bold hover:bg-gray-100 active:scale-95 transition-all duration-300 flex items-center justify-center gap-2 group/btn shadow-xl">
+                            <span>Learn More</span>
+                            <svg
+                                className="w-5 h-5 group-hover/btn:translate-x-1 transition-transform duration-300"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                            >
+                                <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    strokeWidth={2}
+                                    d="M17 8l4 4m0 0l-4 4m4-4H3"
+                                />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
             </div>
         </motion.div>
     );
