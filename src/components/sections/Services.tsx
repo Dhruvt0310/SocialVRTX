@@ -1,112 +1,182 @@
 "use client";
+import { useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { Spotlight } from "@/components/ui/spotlight";
+import { StarsBackground } from "@/components/ui/stars-background";
 
-import { BentoGrid, BentoGridItem } from "@/components/ui/bento-grid";
-import { HoverEffect } from "@/components/ui/card-hover-effect";
-import { SparklesCore } from "@/components/ui/sparkles";
+import { servicesData } from "./servicesData";
 
-const services = [
-  {
-    title: "Social Media Marketing",
-    description: "Strategic social media campaigns that build brand awareness, engage audiences, and drive conversions across all platforms.",
-    link: "#"
-  },
-  {
-    title: "Performance Marketing",
-    description: "Data-driven paid advertising campaigns across Google, Facebook, Instagram, and other platforms to maximize ROI.",
-    link: "#"
-  },
-  {
-    title: "Content Marketing",
-    description: "Compelling content strategies that tell your brand story and engage your target audience at every touchpoint.",
-    link: "#"
-  },
-  {
-    title: "Influencer Marketing",
-    description: "Strategic partnerships with influencers and content creators to amplify your brand reach and credibility.",
-    link: "#"
-  },
-  {
-    title: "Marketing Automation",
-    description: "Advanced automation systems that nurture leads, personalize customer journeys, and scale your marketing efforts.",
-    link: "#"
-  },
-  {
-    title: "Analytics & Insights",
-    description: "Comprehensive tracking and analysis to measure campaign performance and optimize your marketing strategies.",
-    link: "#"
-  }
-];
+// ─── Layout constants ─────────────────────────────────────────────────────────
+const CARD_VW = 0.32;
+const CARD_MAX_PX = 420;
+const CARD_MIN_PX = 260;
+const GAP_PX = 40;
+const VISIBLE_CARDS = 2;
+const SCROLL_STEPS = servicesData.length - VISIBLE_CARDS;
 
-const bentoItems = [
-  {
-    title: "Strategy First",
-    description: "Every project starts with a comprehensive strategy to ensure we're solving the right problems.",
-    header: <div className="flex flex-1 w-full h-full min-h-[6rem] rounded-xl bg-gradient-to-br from-neutral-200 dark:from-neutral-900 dark:to-neutral-800 to-neutral-100"></div>,
-  },
-  {
-    title: "Creative Excellence",
-    description: "Award-winning creative solutions that stand out in today's competitive landscape.",
-    header: <div className="flex flex-1 w-full h-full min-h-[6rem] rounded-xl bg-gradient-to-br from-neutral-200 dark:from-neutral-900 dark:to-neutral-800 to-neutral-100"></div>,
-  },
-  {
-    title: "Technical Expertise",
-    description: "Cutting-edge technology implementation with a focus on performance and scalability.",
-    header: <div className="flex flex-1 w-full h-full min-h-[6rem] rounded-xl bg-gradient-to-br from-neutral-200 dark:from-neutral-900 dark:to-neutral-800 to-neutral-100"></div>,
-  },
-  {
-    title: "Results Driven",
-    description: "We measure success through your business growth and customer satisfaction.",
-    header: <div className="flex flex-1 w-full h-full min-h-[6rem] rounded-xl bg-gradient-to-br from-neutral-200 dark:from-neutral-900 dark:to-neutral-800 to-neutral-100"></div>,
-  },
-];
+function getCardW(): number {
+    if (typeof window === "undefined") return 340;
+    return Math.max(CARD_MIN_PX, Math.min(CARD_MAX_PX, window.innerWidth * CARD_VW));
+}
 
+function getStartX(): number {
+    if (typeof window === "undefined") return 60;
+    const vw = window.innerWidth;
+    const cardW = getCardW();
+    return (vw - 2 * cardW - GAP_PX) / 2;
+}
+
+// ─── Main component ───────────────────────────────────────────────────────────
 export default function Services() {
-  return (
-    <div className="py-20 bg-black/[0.96] antialiased bg-grid-white/[0.02] relative">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-6xl font-bold text-center bg-clip-text text-transparent bg-gradient-to-b from-neutral-50 to-neutral-400 mb-4">
-            What We're Good At
-          </h2>
-          <p className="text-xl text-neutral-300 max-w-3xl mx-auto">
-            SocialVRTX combines data-driven strategies, creative content, and cutting-edge technology to deliver exceptional marketing results.
-          </p>
-        </div>
+    const sectionRef = useRef<HTMLElement>(null);
+    const stickyZoneRef = useRef<HTMLDivElement>(null);
 
-        {/* Services Grid */}
-        <div className="mb-20">
-          <HoverEffect items={services} />
-        </div>
+    const { scrollYProgress } = useScroll({
+        target: stickyZoneRef,
+        offset: ["start start", "end end"],
+    });
 
-        {/* Why Choose Us - Bento Grid */}
-        <div className="mb-16">
-          <h3 className="text-3xl md:text-4xl font-bold text-center bg-clip-text text-transparent bg-gradient-to-b from-neutral-50 to-neutral-400 mb-12">
-            Why Choose Us
-          </h3>
-          <BentoGrid className="max-w-4xl mx-auto">
-            {bentoItems.map((item, i) => (
-              <BentoGridItem
-                key={i}
-                title={item.title}
-                description={item.description}
-                header={item.header}
-                className={i === 3 || i === 6 ? "md:col-span-2" : ""}
-              />
-            ))}
-          </BentoGrid>
-        </div>
-      </div>
-      
-      <SparklesCore
-        id="services-sparkles"
-        background="transparent"
-        minSize={0.4}
-        maxSize={1}
-        particleDensity={100}
-        className="w-full h-full absolute inset-0"
-        particleColor="#FFFFFF"
-      />
-    </div>
-  );
+    const xPx = useTransform(scrollYProgress, (p) => {
+        const startX = getStartX();
+        const cardW = getCardW();
+        const travel = SCROLL_STEPS * (cardW + GAP_PX);
+        return startX - p * travel;
+    });
+
+    return (
+        <section ref={sectionRef} className="relative bg-black">
+
+            {/* ⭐ ONLY ADDITION — SAFE BACKGROUND */}
+            <StarsBackground className="pointer-events-none"   starDensity={0.00045}
+  allStarsTwinkle={false}
+  twinkleProbability={0.85}
+  minTwinkleSpeed={0.3}
+  maxTwinkleSpeed={0.7} />
+
+            <Spotlight className="top-0 left-0 md:left-60" fill="white" />
+
+            {/* ── Heading ── */}
+            <div className="px-8 md:px-16 pt-24 pb-10 overflow-hidden">
+                <h2 className="text-5xl md:text-7xl lg:text-8xl font-bold text-[#ffffff] leading-none">
+                    Our Services
+                </h2>
+
+                <motion.p
+                    initial={{ opacity: 0, y: 18 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.75, delay: 0.15, ease: [0.25, 0.46, 0.45, 0.94] }}
+                    className="mt-4 text-base md:text-lg text-[#f0ff9bae] max-w-xl"
+                >
+                    Comprehensive digital solutions tailored to elevate your brand
+                    and drive measurable results.
+                </motion.p>
+            </div>
+
+            {/* ── Sticky horizontal-scroll zone ── */}
+            <div
+                ref={stickyZoneRef}
+                style={{ height: `${SCROLL_STEPS * 100}vh` }}
+                className="relative"
+            >
+                <div className="sticky top-0 h-screen w-full overflow-hidden flex items-center">
+                    <motion.div
+                        style={{ x: xPx, gap: `${GAP_PX}px` }}
+                        className="flex items-stretch will-change-transform"
+                    >
+                        {servicesData.map((service, index) => (
+                            <ServiceCard key={service.id} service={service} index={index} />
+                        ))}
+                    </motion.div>
+                </div>
+            </div>
+        </section>
+    );
+}
+
+// ─── Service Card ─────────────────────────────────────────────────────────────
+function ServiceCard({
+    service,
+    index,
+}: {
+    service: (typeof servicesData)[0];
+    index: number;
+}) {
+    return (
+        <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-60px" }}
+            transition={{
+                duration: 0.5,
+                delay: index * 0.06,
+                ease: [0.25, 0.46, 0.45, 0.94],
+            }}
+            whileHover={{
+                boxShadow: "inset 0 0 0 1px rgba(255,255,255,0.5)",
+            }}
+            className="flex-shrink-0 group relative"
+            style={{
+                width: `clamp(${CARD_MIN_PX}px, ${CARD_VW * 100}vw, ${CARD_MAX_PX}px)`,
+                height: "clamp(440px, 74vh, 680px)",
+                boxShadow: "inset 0 0 0 1px rgba(255,255,255,0.18)",
+                transition: "box-shadow 0.4s ease",
+            }}
+        >
+            <div className="absolute inset-0 overflow-hidden">
+                <img
+                    src={service.image}
+                    alt={service.title}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                />
+
+                <div
+                    className="absolute inset-0"
+                    style={{
+                        background: "linear-gradient(to top, rgba(0,0,0,0.52) 0%, rgba(0,0,0,0.08) 28%, transparent 50%)",
+                    }}
+                />
+
+                <div
+                    className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                    style={{
+                        background: "linear-gradient(to top, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.55) 50%, rgba(0,0,0,0.2) 100%)",
+                    }}
+                />
+            </div>
+
+            <div className="relative z-10 h-full flex flex-col justify-end p-7 md:p-8">
+                <div>
+                    <h3 className="text-2xl md:text-[1.65rem] font-bold text-white leading-snug">
+                        {service.title}
+                    </h3>
+
+                    <div className="grid grid-rows-[0fr] group-hover:grid-rows-[1fr] transition-all duration-500">
+                        <div className="overflow-hidden">
+                            <p className="text-gray-300 text-sm leading-relaxed pt-4 pb-5">
+                                {service.description}
+                            </p>
+
+                            <button className="w-full py-3 px-6 bg-white text-black font-bold hover:bg-gray-100 active:scale-95 transition-all duration-300 flex items-center justify-center gap-2 group/btn">
+                                <span>Learn More</span>
+                                <svg
+  className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform duration-300"
+  fill="none"
+  stroke="currentColor"
+  viewBox="0 0 24 24"
+>
+  <path
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    strokeWidth={2}
+    d="M17 8l4 4m0 0l-4 4m4-4H3"
+  />
+</svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </motion.div>
+    );
 }
